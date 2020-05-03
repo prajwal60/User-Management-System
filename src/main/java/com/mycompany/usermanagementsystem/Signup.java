@@ -23,7 +23,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author pguragain3
  */
 public class Signup extends HttpServlet {
-
+    User u = new User();
+    String driver_path = "com.mysql.cj.jdbc.Driver";
+    String database_path = "jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC";
+    String username = "root";
+    String password = "";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,23 +44,25 @@ public class Signup extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           String input_firstname = request.getParameter("firstname");
-           String input_lastname = request.getParameter("lastname");
-           String input_username = request.getParameter("username");
-           String input_email = request.getParameter("email");
-           String input_gender = request.getParameter("gender");
-           String input_birthdate = request.getParameter("birthdate");
-           String input_pass = request.getParameter("pass");
-           String user_is_admin = "false";
-           String user_created_date = java.time.LocalDate.now().toString();
-           String user_blocked_status = "false";
+           u.setFirst_name(request.getParameter("firstname"));
+           u.setLast_name(request.getParameter("lastname"));
+           u.setUsername(request.getParameter("username"));
+           u.setEmail(request.getParameter("email"));
+           u.setGender(request.getParameter("gender"));
+           u.setUser_birthdate(request.getParameter("birthdate"));
+           u.setUser_is_admin("false");
+           u.setUser_created_date(java.time.LocalDate.now().toString());
+           u.setUser_blocked_status("false");
+           u.setUser_password1(request.getParameter("pass1"));
+           u.setUser_passsword2(request.getParameter("pass2"));
+
            
            
            System.out.println("Debugging message 1");
            
            
-           Class.forName("com.mysql.cj.jdbc.Driver");
-           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC","root","");
+           Class.forName(driver_path);
+           Connection con = DriverManager.getConnection(database_path,username,password);
            
            System.out.println("Debugging message2");
            
@@ -66,23 +73,30 @@ public class Signup extends HttpServlet {
            
            PreparedStatement ps = con.prepareStatement(query);
            
-           ps.setString(1,input_firstname);
-           ps.setString(2,input_lastname);
-           ps.setString(3,input_username);
-           ps.setString(4,input_email);
-           ps.setString(5,input_gender);
-           ps.setString(6,input_birthdate);
-           ps.setString(7,input_pass);
-           ps.setString(8,user_is_admin);
-           ps.setString(9,user_created_date);
-           ps.setString(10,user_blocked_status);
+           ps.setString(1,u.getFirst_name());
+           ps.setString(2,u.getLast_name());
+           ps.setString(3,u.getUsername());
+           ps.setString(4,u.getEmail());
+           ps.setString(5,u.getGender());
+           ps.setString(6,u.getUser_birthdate());
+           ps.setString(7,u.getUser_password1());
+           ps.setString(8,u.getUser_is_admin());
+           ps.setString(9,u.getUser_created_date());
+           ps.setString(10,u.getUser_blocked_status());
            
+           
+           if(u.username_exists(request.getParameter("username"))==true || u.password_mismatch()==true){
+           out.println("Username exists or password mismatch");
+           }
+           else if(u.empty_fields_detected()==true){
+            out.println("Empty fields detected");
+        }
+           else{
            ps.executeUpdate();
            
            out.println("All right");
-        } catch (SQLException ex) {
-            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+           }
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

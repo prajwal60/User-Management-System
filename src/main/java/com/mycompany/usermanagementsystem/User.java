@@ -5,25 +5,36 @@
  */
 package com.mycompany.usermanagementsystem;
 
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author pguragain3
  */
 public class User {
+    private final String driver_path = "com.mysql.cj.jdbc.Driver";
+    private final String database_path = "jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC";
+    private final String user_name = "root";
+    private final String password = "";
     private int user_id;
     private String first_name;
     private String last_name;
     private String username;
     private String email;
     private String gender;
-    private Date user_birthdate;
-    private String user_password;
-    private boolean user_is_admin;
-    private boolean user_blocked_status;
-    private Date user_created_date;  
-
+    private String user_birthdate;
+    private String user_password1;
+    private String user_password2;
+    private String user_is_admin;
+    private String user_blocked_status;
+    private String user_created_date;  
+    
     /**
      * @return the user_id
      */
@@ -111,70 +122,119 @@ public class User {
     /**
      * @return the user_birthdate
      */
-    public Date getUser_birthdate() {
+    public String getUser_birthdate() {
         return user_birthdate;
     }
 
     /**
      * @param user_birthdate the user_birthdate to set
      */
-    public void setUser_birthdate(Date user_birthdate) {
+    public void setUser_birthdate(String user_birthdate) {
         this.user_birthdate = user_birthdate;
     }
 
     /**
-     * @return the user_password
+     * @return the user_password1
      */
-    public String getUser_password() {
-        return user_password;
+    public String getUser_password1() {
+        return user_password1;
     }
 
     /**
-     * @param user_password the user_password to set
+     * @param user_password1 the user_password1 to set
      */
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setUser_password1(String user_password1) {
+        this.user_password1 = user_password1;
+    }
+
+    /**
+     * @return the user_passsword2
+     */
+    public String getUser_password2() {
+        return user_password2;
+    }
+
+    /**
+     * @param user_password2
+     */
+    public void setUser_passsword2(String user_password2) {
+        this.user_password2 = user_password2;
     }
 
     /**
      * @return the user_is_admin
      */
-    public boolean isUser_is_admin() {
+    public String getUser_is_admin() {
         return user_is_admin;
     }
 
     /**
      * @param user_is_admin the user_is_admin to set
      */
-    public void setUser_is_admin(boolean user_is_admin) {
+    public void setUser_is_admin(String user_is_admin) {
         this.user_is_admin = user_is_admin;
     }
 
     /**
      * @return the user_blocked_status
      */
-    public boolean isUser_blocked_status() {
+    public String getUser_blocked_status() {
         return user_blocked_status;
     }
 
     /**
      * @param user_blocked_status the user_blocked_status to set
      */
-    public void setUser_blocked_status(boolean user_blocked_status) {
+    public void setUser_blocked_status(String user_blocked_status) {
         this.user_blocked_status = user_blocked_status;
     }
 
     /**
      * @return the user_created_date
      */
-    public Date getUser_created_date() {
+    public String getUser_created_date() {
         return user_created_date;
     }
 
     /**
      * @param user_created_date the user_created_date to set
      */
-    public void setUser_created_date(Date user_created_date) {
+    public void setUser_created_date(String user_created_date) {
         this.user_created_date = user_created_date;
     }
+    
+    
+    public boolean username_exists(String username){
+        Boolean result = false;
+        try {
+            Class.forName(driver_path);
+            Connection conn = DriverManager.getConnection(database_path, user_name, password);
+            PreparedStatement st = conn.prepareStatement("select * from userdb where username = ?");
+        st.setString(1, username);
+        ResultSet r1=st.executeQuery();
+            if(r1.next()) {
+            result = true;
+            }
+        }
+            catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+}
+    public boolean empty_fields_detected(){
+        if(first_name.isEmpty() ||last_name.isEmpty() ||username.isEmpty() ||email.isEmpty() 
+                ||gender.isEmpty() ||user_birthdate.isEmpty() ||user_password1.isEmpty() ||user_password2.isEmpty()){
+            return true;
+        }
+        else return false;
+    }
+    
+    public boolean password_mismatch(){
+    if(user_password1.equals(user_password2)){
+        return false;
+    }
+    else return true;
+    }
+
+    
 }
