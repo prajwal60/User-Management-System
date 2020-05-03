@@ -55,7 +55,7 @@ public class Signup extends HttpServlet {
            
            
            Class.forName("com.mysql.cj.jdbc.Driver");
-           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management","root","");
+           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC","root","");
            
            System.out.println("Debugging message2");
            
