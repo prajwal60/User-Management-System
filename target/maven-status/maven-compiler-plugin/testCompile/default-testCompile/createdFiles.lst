@@ -1,2 +1,2 @@
-testPackage/signupTest.class
-testPackage/loginTest.class
+testPackage\loginTest.class
+testPackage\signupTest.class
