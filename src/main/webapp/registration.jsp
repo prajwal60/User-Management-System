@@ -44,15 +44,15 @@
                             </div>                            
                             <div class="form-group">
                                 <label for="date"><i class="zmdi zmdi-calendar"></i></label>
-                                <input type="text" name="birthdate" id="date" placeholder="Birthdate mm/dd/yyyy"/>
+                                <input type="date" name="birthdate" id="date" placeholder="Birthdate mm/dd/yyyy"/>
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password"/>
+                                <input type="password" name="pass1" id="pass" placeholder="Password"/>
                             </div>
                             <div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                                <input type="password" name="pass2" id="re_pass" placeholder="Repeat your password"/>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
