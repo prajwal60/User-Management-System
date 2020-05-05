@@ -34,6 +34,7 @@ public class User {
     private String user_is_admin;
     private String user_blocked_status;
     private String user_created_date;  
+    EncryptionDecryption ed = new EncryptionDecryption();
     
     /**
      * @return the user_id
@@ -235,6 +236,35 @@ public class User {
     }
     else return true;
     }
-
+    
+    public void adduser(){
+        try {
+            Class.forName(driver_path);
+            Connection con = DriverManager.getConnection(database_path,user_name,password);
+            
+            String query = "insert into userdb (user_firstname,user_lastname,username,user_email,user_gender,user_birthdate,user_password,user_is_admin,user_created_date,user_blocked_status) "
+                   + "values (?,?,?,?,?,?,?,?,?,?)";
+            
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1,first_name);
+           ps.setString(2,last_name);
+           ps.setString(3,username);
+           ps.setString(4,email);
+           ps.setString(5,gender);
+           ps.setString(6,user_birthdate);
+           ps.setString(7,ed.getEncryptedValue(user_password1));
+           ps.setString(8,user_is_admin);
+           ps.setString(9,user_created_date);
+           ps.setString(10,user_blocked_status);
+           
+           ps.executeUpdate();
+          
+           
+           
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

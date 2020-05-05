@@ -6,7 +6,7 @@ CREATE TABLE userdb (
   user_email varchar(40) NOT NULL,
   user_gender varchar(6) NOT NULL,
   user_birthdate varchar(30) NOT NULL,
-  user_password varchar(10) NOT NULL,
+  user_password varchar(30) NOT NULL,
   user_is_admin varchar(5) NOT NULL,
   user_created_date varchar(30) NOT NULL,
   user_blocked_status varchar(5) NOT NULL,
