@@ -247,17 +247,17 @@ public class User {
             
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1,first_name);
-           ps.setString(2,last_name);
-           ps.setString(3,username);
-           ps.setString(4,email);
-           ps.setString(5,gender);
-           ps.setString(6,user_birthdate);
-           ps.setString(7,ed.getEncryptedValue(user_password1));
-           ps.setString(8,user_is_admin);
-           ps.setString(9,user_created_date);
-           ps.setString(10,user_blocked_status);
+            ps.setString(2,last_name);
+            ps.setString(3,username);
+            ps.setString(4,email);
+            ps.setString(5,gender);
+            ps.setString(6,user_birthdate);
+            ps.setString(7,(user_password1));
+            ps.setString(8,user_is_admin);
+            ps.setString(9,user_created_date);
+            ps.setString(10,user_blocked_status);
            
-           ps.executeUpdate();
+            ps.executeUpdate();
           
            
            
