@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="lastname" id="name" placeholder="Full Name"/>
+                                <input type="text" name="lastname" id="name" placeholder="Last Name"/>
                             </div>
                             <div class="form-group">
                                 <label for="username"><i class="zmdi zmdi-account zmdi-accounts-add"></i></label>
