@@ -80,23 +80,6 @@ public class Signup extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-<<<<<<< HEAD
-=======
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
->>>>>>> 9f4ab090dcc807fd2dc50b88f8c69b93de7d1a0c
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -120,8 +103,5 @@ public class Signup extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-<<<<<<< HEAD
 
-=======
->>>>>>> 9f4ab090dcc807fd2dc50b88f8c69b93de7d1a0c
 }
