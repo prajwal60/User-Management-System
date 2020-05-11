@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  * @author Asus
  */
 @WebServlet(name = "login_1", urlPatterns = {"/login_1"})
-public class Login extends HttpServlet {
+public class login extends HttpServlet {
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
