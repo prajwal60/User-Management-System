@@ -1,6 +1,7 @@
 com\mycompany\usermanagementsystem\EncryptionDecryption.class
 com\mycompany\usermanagementsystem\resources\JavaEE8Resource.class
+com\mycompany\usermanagementsystem\Login.class
 com\mycompany\usermanagementsystem\User.class
 com\mycompany\usermanagementsystem\JAXRSConfiguration.class
-login.class
+com\mycompany\usermanagementsystem\LoginDao.class
 com\mycompany\usermanagementsystem\Signup.class
