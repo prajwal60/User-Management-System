@@ -27,23 +27,39 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
           		
 		String name=request.getParameter("username");
 		String pass=request.getParameter("your_pass");
-		
-		if(Controller.validate(name, pass)){
-			RequestDispatcher rd=request.getRequestDispatcher("homegage.jsp");
-			rd.forward(request,response);
-		}
+                Controller cll = new Controller();
+                
+                if (name.isEmpty() && pass.isEmpty()){
+                    out.print("Empty Fields ");
+                }
+                else if(name.isEmpty()){
+                    out.print("Please enter Username");
+                }
+                else if(pass.isEmpty()){
+                    out.print("Please enter Password");
+                }
+		               
+                if(cll.validate(name, pass)==true){
+                    RequestDispatcher rd=request.getRequestDispatcher("homepage.jsp");
+			rd.include(request,response);
+                }
+                
+                
 		else{
-			out.print("Sorry username or password error");
+			
 			RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+                        out.print("Sorry username or password error");
 			rd.include(request,response);
 		}
 		
 		out.close();
         
         }
+        
 
 
     }
@@ -53,6 +69,8 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        
     }
 
   
@@ -67,6 +85,7 @@ public class Login extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
+
     
 
 }

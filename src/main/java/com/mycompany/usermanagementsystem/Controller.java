@@ -9,37 +9,39 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author Asus
  */
-public class Controller {
-    public static boolean validate(String name,String password){  
+public class Controller { public boolean validate(String name,String pass){  
     boolean status=false;  
         try{  
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();  
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC");
-            String user = "root";
-            String psw = "root";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String username = "root";
+            String password = "";
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC",username,password);
+            
             String query ="select * from userdb where username=? and user_password=?";
 
             PreparedStatement ps=con.prepareStatement(query);  
             ps.setString(1,name);  
-            ps.setString(2,password); 
-            ResultSet rs=ps.executeQuery(); 
-            String un = rs.getString("username");
-            String pw = rs.getString("user_password");
-            if (name.equals(un) && pw.equals(password)){
-                status=rs.next();
+            ps.setString(2,pass); 
+            ResultSet rs=ps.executeQuery();           
+            if(rs.next()){
+                status = true;
+            }else{
+                status = false;
             }
-            System.out.println("Invalid username and Password");
-                       
+            
         }
         catch(Exception e)
         {System.out.println(e);} 
 
-    return status;  
+     return status;
     }
     
 }
