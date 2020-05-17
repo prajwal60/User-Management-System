@@ -1,6 +1,7 @@
-com\mycompany\usermanagementsystem\EncryptionDecryption.class
+com\mycompany\controller\Signup.class
+com\mycompany\controller\EncryptionDecryption.class
 com\mycompany\usermanagementsystem\resources\JavaEE8Resource.class
-com\mycompany\usermanagementsystem\User.class
 com\mycompany\usermanagementsystem\JAXRSConfiguration.class
-com\mycompany\usermanagementsystem\Signup.class
+com\mycompany\model\User.class
+com\mycompany\usermanagementsystem\login.class
 com\mycompany\usermanagementsystem\Controller.class

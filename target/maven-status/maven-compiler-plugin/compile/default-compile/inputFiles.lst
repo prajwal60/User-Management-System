@@ -1,7 +1,7 @@
 Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\resources\JavaEE8Resource.java
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\Signup.java
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\EncryptionDecryption.java
 Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\login.java
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\User.java
+Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\model\User.java
+Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\controller\EncryptionDecryption.java
+Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\controller\Signup.java
 Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\JAXRSConfiguration.java
 Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\Controller.java

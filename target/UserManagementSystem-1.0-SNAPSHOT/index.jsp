@@ -24,7 +24,7 @@
 
                     <div class="signin-form">
                         <h2 class="form-title">Login</h2>
-                        <form action="login" method="POST" class="register-form" id="login-form"  >
+                        <form action="Login" method="POST" class="register-form" id="login-form"  >
                             <div class="form-group">
                                 <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="username" id="username" placeholder="Username"/>
