@@ -59,6 +59,12 @@ public class Signup extends HttpServlet {
            else if(UserDAO.empty_fields_detected(u)==true){
             out.println("Empty fields detected");
         }
+           else if(UserDAO.password_short_length(u)==true){
+               out.println("Password must be at least 8 characters");
+           }
+           else if(UserDAO.invallid_date(u)==true){
+               out.println("Invalid date");
+           }
            else{
             UserDAO.addUser(u);
            

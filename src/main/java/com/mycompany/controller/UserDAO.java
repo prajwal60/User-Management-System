@@ -11,6 +11,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,11 +48,40 @@ public class UserDAO {
         else return false;
     }
     
+    public static boolean password_short_length(User u){
+        if(u.getUser_password1().length()<8){
+            return true;
+        }
+        else return false;
+    }
+    
     public static boolean password_mismatch(User u){
     if(u.getUser_password1().equals(u.getUser_password2())){
         return false;
     }
     else return true;
+    }
+    
+    public static boolean invallid_date(User u){
+        Boolean status = true;
+        String ubirthDate= u.getUser_birthdate();
+        String ucreatedDate = u.getUser_created_date();
+    Date date1; 
+    Date date2;
+        try {
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(ubirthDate);
+            date2 = new SimpleDateFormat("yyyy-MM-dd").parse(ucreatedDate);
+            if(date1.after(date2)){
+                status=true;
+            }
+            else{
+                status=false;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    
     }
     
     public static void addUser(User u){
