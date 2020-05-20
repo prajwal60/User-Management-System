@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 public class forgetPassword extends HttpServlet {
     
     int code = 111111;
+    String forgemail;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,7 +47,7 @@ public class forgetPassword extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Random random = new Random();
            code = random.nextInt(99999);
-           String forgemail = request.getParameter("forgetEmail");
+           forgemail = request.getParameter("forgetEmail");
         try(PrintWriter out = response.getWriter()){  
             Class.forName("com.mysql.cj.jdbc.Driver");
             String username = "root";
@@ -56,6 +57,7 @@ public class forgetPassword extends HttpServlet {
             String query ="select * from userdb where user_email=?";
 
             PreparedStatement ps=con.prepareStatement(query);  
+            ps.setString(1,forgemail);
              
             ResultSet rs=ps.executeQuery();
             String host = "smtp.gmail.com";
