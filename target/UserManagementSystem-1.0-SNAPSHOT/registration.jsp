@@ -12,6 +12,9 @@
         <title>Registration</title>
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <script>
+            date.max = new Date().toISOString().split("T")[0];
+        </script>
     </head>
     <body>
           <div class="main">

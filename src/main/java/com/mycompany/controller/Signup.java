@@ -21,11 +21,7 @@ public class Signup extends HttpServlet {
     
     
     EncryptionDecryption ed = new EncryptionDecryption();
-    User u = new User();
-    String driver_path = "com.mysql.cj.jdbc.Driver";
-    String database_path = "jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC";
-    String username = "root";
-    String password = "";
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,6 +36,7 @@ public class Signup extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            User u = new User();
             /* TODO output your page here. You may use following sample code. */
             u.setFirst_name(request.getParameter("firstname"));
             u.setLast_name(request.getParameter("lastname"));
@@ -53,14 +50,17 @@ public class Signup extends HttpServlet {
             u.setUser_password1(request.getParameter("pass1"));
             u.setUser_passsword2(request.getParameter("pass2"));
            
-           if(u.username_exists(request.getParameter("username"))==true || u.password_mismatch()==true){
-           out.println("Username exists or password mismatch");
+           if(UserDAO.username_exists(u)==true){
+           out.println("Username exists");
            }
-           else if(u.empty_fields_detected()==true){
+           else if(UserDAO.password_mismatch(u)==true){
+               out.println("Passwords Missmatch");
+           }
+           else if(UserDAO.empty_fields_detected(u)==true){
             out.println("Empty fields detected");
         }
            else{
-            u.adduser();
+            UserDAO.addUser(u);
            
             out.println("All right");
            }
