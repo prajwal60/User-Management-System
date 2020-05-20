@@ -1,7 +1,10 @@
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\resources\JavaEE8Resource.java
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\login.java
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\model\User.java
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\controller\EncryptionDecryption.java
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\controller\Signup.java
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\JAXRSConfiguration.java
-Z:\NetBeans Project\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\Controller.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\forgetPassword.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\login.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\Signup.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\JAXRSConfiguration.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\model\User.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\EncryptionDecryption.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\ForgotPasswordDAO.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\resources\JavaEE8Resource.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\Controller.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\Examp.java

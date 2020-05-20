@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Asus
  */
-public class Controller { public boolean validate(String name,String pass){  
+public class Controller { 
+    public boolean validate(String name,String pass){  
     boolean status=false;  
         try{  
             Class.forName("com.mysql.cj.jdbc.Driver");
