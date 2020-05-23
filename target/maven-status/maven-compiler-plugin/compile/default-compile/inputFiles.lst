@@ -1,10 +1,13 @@
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/login.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/ForgotPasswordDAO.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Signup.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/usermanagementsystem/resources/JavaEE8Resource.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Controller.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Examp.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/EncryptionDecryption.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/model/User.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/forgetPassword.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/usermanagementsystem/JAXRSConfiguration.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\Gen.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\Signup.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\EncryptionDecryption.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\Controller.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\Examp.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\forgetPassword.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\EmailUtility.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\login.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\Verify.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\JAXRSConfiguration.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\model\User.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\controller\ForgotPasswordDAO.java
+D:\Study material\Fourth sem\SAD\User-Management-System\src\main\java\com\mycompany\usermanagementsystem\resources\JavaEE8Resource.java

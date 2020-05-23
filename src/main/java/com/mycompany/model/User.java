@@ -212,8 +212,8 @@ public class User {
             Class.forName(driver_path);
             Connection conn = DriverManager.getConnection(database_path, user_name, password);
             PreparedStatement st = conn.prepareStatement("select * from userdb where username = ?");
-        st.setString(1, username);
-        ResultSet r1=st.executeQuery();
+            st.setString(1, username);
+            ResultSet r1=st.executeQuery();
             if(r1.next()) {
             result = true;
             }

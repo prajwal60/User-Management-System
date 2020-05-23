@@ -46,7 +46,7 @@
                   </div>
                         <form action="forgetPassword" method="POST" class="user"  >
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-user" name="forgetEmail" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                        <input type="email" class="form-control form-control-user" name="to" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
                         <input type="submit" name="forgetPassword"  class="btn btn-primary btn-user btn-block" value="Reset Password"/>
                                            
@@ -60,12 +60,15 @@
                   </div>
                    </div>
                     
-                </div>
-              
+                </div>                        
+            
+               </div>
             </div>
+                    
           </div>
+                    
         </div>
-
+              
       </div>
 
     </div>

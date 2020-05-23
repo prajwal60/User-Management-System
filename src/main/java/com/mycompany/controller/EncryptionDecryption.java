@@ -4,8 +4,13 @@
  * and open the template in the editor.
  */
 package com.mycompany.controller;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 /**
@@ -21,7 +26,7 @@ public class EncryptionDecryption {
                 String encryptedString = new String(encryptedData);
                 return encryptedString;
             }
-            catch(Exception e){
+            catch(NoSuchAlgorithmException | NoSuchPaddingException e){
                 return null;
             }
         }
@@ -34,7 +39,7 @@ public class EncryptionDecryption {
                 String decryptedValue = decryptString(toByte, key, cp);
                 return decryptedValue;
             }
-            catch(Exception e){
+            catch(NoSuchAlgorithmException | NoSuchPaddingException e){
                 return null;
             }
         }
@@ -44,7 +49,7 @@ public class EncryptionDecryption {
             SecretKey myKey = keygenerator .generateKey();
             return myKey;
         }
-        catch(Exception e){
+        catch(NoSuchAlgorithmException e){
             System.out.println("Error here");
             return null;
         }
@@ -59,7 +64,7 @@ public class EncryptionDecryption {
              byte[] textEncrypted = cipher.doFinal(text);
              return textEncrypted;
         }
-        catch(Exception e){
+        catch(InvalidKeyException | BadPaddingException | IllegalBlockSizeException e){
 //            System.out.println("encrypted");
             return null;
             
@@ -72,7 +77,8 @@ public class EncryptionDecryption {
             String result = new String(texDecrypted);
             return result;
         }
-        catch(Exception e){
+        catch(InvalidKeyException | BadPaddingException | IllegalBlockSizeException
+                e){
             System.out.println("decrypted");
             return null;
         }
