@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.mycompany.controller.EncryptionDecryption;
 
 /**
  *
@@ -34,9 +33,7 @@ public class User {
     private String user_password2;
     private String user_is_admin;
     private String user_blocked_status;
-    private String user_created_date;  
-    EncryptionDecryption ed = new EncryptionDecryption();
-    
+    private String user_created_date;    
     /**
      * @return the user_id
      */

@@ -95,7 +95,7 @@ public class UserDAO {
             ps.setString(4,u.getEmail());
             ps.setString(5,u.getGender());
             ps.setString(6,u.getUser_birthdate());
-            ps.setString(7,u.getUser_password1());
+            ps.setString(7,Hashing.getHash(u.getUser_password1()));
             ps.setString(8,u.getUser_is_admin());
             ps.setString(10,u.getUser_blocked_status());
             ps.setString(9,u.getUser_created_date());

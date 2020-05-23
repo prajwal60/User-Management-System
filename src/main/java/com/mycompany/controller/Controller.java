@@ -9,9 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -29,7 +26,7 @@ public class Controller { public boolean validate(String name,String pass){
 
             PreparedStatement ps=con.prepareStatement(query);  
             ps.setString(1,name);  
-            ps.setString(2,pass); 
+            ps.setString(2,Hashing.getHash(pass)); 
             ResultSet rs=ps.executeQuery();           
             if(rs.next()){
                 status = true;

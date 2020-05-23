@@ -20,7 +20,6 @@ import com.mycompany.model.User;
 public class Signup extends HttpServlet {
     
     
-    EncryptionDecryption ed = new EncryptionDecryption();
     
 
     /**
