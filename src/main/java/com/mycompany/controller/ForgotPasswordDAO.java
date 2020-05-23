@@ -12,34 +12,35 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author Asus
+ * @author Your Name Prajwal Ghimire
  */
-public class Controller { 
-    public boolean validate(String name,String pass){  
-    boolean status=false;  
+public class ForgotPasswordDAO {
+    
+    public void ForgotPasswordDAO(String email,String pass){
+        boolean status = false;
         try{  
             Class.forName("com.mysql.cj.jdbc.Driver");
             String username = "root";
             String password = "";
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC",username,password);
-            
-            String query ="select * from userdb where username=? and user_password=?";
+            String id = "SELECT user_id FROM userdb WHERE user_email = "+email+"";
+            Integer _id = Integer.parseInt(id);
+            String query ="UPDATE userdb SET password=? WHERE id ="+_id+"";
 
             PreparedStatement ps=con.prepareStatement(query);  
-            ps.setString(1,name);  
-            ps.setString(2,Hashing.getHash(pass)); 
+            ps.setString(1,pass);  
             ResultSet rs=ps.executeQuery();           
-            if(rs.next()){
+            if (rs.next()){
                 status = true;
-            }else{
-                status = false;
             }
+            else
+                status = false;
             
         }
         catch(Exception e)
         {System.out.println(e);} 
-
-     return status;
+        
     }
+    
     
 }
