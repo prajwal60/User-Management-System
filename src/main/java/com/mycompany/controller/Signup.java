@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mycompany.model.User;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,12 +22,7 @@ import com.mycompany.model.User;
 public class Signup extends HttpServlet {
     
     
-    EncryptionDecryption ed = new EncryptionDecryption();
-    User u = new User();
-    String driver_path = "com.mysql.cj.jdbc.Driver";
-    String database_path = "jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC";
-    String username = "root";
-    String password = "";
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +37,8 @@ public class Signup extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            User u = new User();
+            /* Get the values from form and set to setters on user class */
             u.setFirst_name(request.getParameter("firstname"));
             u.setLast_name(request.getParameter("lastname"));
             u.setUsername(request.getParameter("username"));
@@ -52,17 +50,42 @@ public class Signup extends HttpServlet {
             u.setUser_blocked_status("false");
             u.setUser_password1(request.getParameter("pass1"));
             u.setUser_passsword2(request.getParameter("pass2"));
+           HttpSession session = request.getSession(true);
+           RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
+           RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
            
-           if(u.username_exists(request.getParameter("username"))==true || u.password_mismatch()==true){
-           out.println("Username exists or password mismatch");
+           if(UserDAO.username_exists(u)==true){//check if the username already exists
+           session.setAttribute("message","Username already exists !!!");
+           rd.forward(request, response);
+           
            }
-           else if(u.empty_fields_detected()==true){
-            out.println("Empty fields detected");
-        }
-           else{
-            u.adduser();
+           else if(UserDAO.username_exists(u)==true){//check if the email already used
+           session.setAttribute("message","Email already used !!!");
+           rd.forward(request, response);
            
-            out.println("All right");
+           }
+           else if(UserDAO.password_mismatch(u)==true){//check if passwords mismatch
+               session.setAttribute("message","Passwords don't match !!!!!");
+               rd.forward(request, response);
+           }
+           else if(UserDAO.empty_fields_detected(u)==true){//check if there are empty fields
+            session.setAttribute("message","Empty fields detected");
+            rd.forward(request, response);
+        }
+           else if(UserDAO.password_short_length(u)==true){//check if the password is of appropriate length
+               session.setAttribute("message","Password must be at least 8 characters");
+               
+               rd.forward(request, response);
+           }
+           else if(UserDAO.invallid_date(u)==true){//check if the birth date selected is invalid
+               session.setAttribute("message","Birth date cannot be ahead of current date ");
+               rd.forward(request, response);
+           }
+           else{
+            UserDAO.addUser(u);//Add user
+           
+            session.setAttribute("message","Successfully registered. Now you can sign in");
+            rd1.forward(request, response);
            }
         }
     }

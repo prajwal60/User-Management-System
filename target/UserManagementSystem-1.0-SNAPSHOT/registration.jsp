@@ -12,6 +12,9 @@
         <title>Registration</title>
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <script>
+            
+        </script>
     </head>
     <body>
           <div class="main">
@@ -58,6 +61,7 @@
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                             </div>
+                            <h3 style="color:red">${message}</h3>
                             <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
                             </div>
@@ -75,7 +79,9 @@
       
 
     </div>
+        
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script>
     </body>
+    
 </html>
