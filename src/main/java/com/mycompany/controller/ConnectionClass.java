@@ -24,7 +24,7 @@ public class ConnectionClass {
     public static Connection getConnection(){
         try{
             Class.forName(driver_path);
-            Connection conn = DriverManager.getConnection(database_path, user_name, password);
+            Connection conn = DriverManager.getConnection(database_path, user_name, password); //establish connection
             return conn;
             
         } catch (ClassNotFoundException | SQLException ex) {

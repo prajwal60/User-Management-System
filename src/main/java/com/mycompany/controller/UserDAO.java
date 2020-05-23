@@ -22,15 +22,17 @@ import java.util.logging.Logger;
  * @author pguragain3
  */
 public class UserDAO {
+    //Get connection from ConnectionClass
     static Connection conn = ConnectionClass.getConnection();
     
+    //Check if username exists or not. returns true if user exists else false
     public static boolean username_exists(User u){
         Boolean result = false;
         try {
-            PreparedStatement st = conn.prepareStatement("select * from userdb where username = ?");
+            PreparedStatement st = conn.prepareStatement("select * from userdb where username = ?");//Query to fetch data from database
         st.setString(1, u.getUsername());
         ResultSet r1=st.executeQuery();
-            if(r1.next()) {
+            if(r1.next()) {//if results exist then
             result = true;
             }
         }
@@ -40,7 +42,7 @@ public class UserDAO {
         return result;
     }
     
-    public static boolean empty_fields_detected(User u){
+    public static boolean empty_fields_detected(User u){//check for empty fields
         if(u.getFirst_name().isEmpty() ||u.getLast_name().isEmpty() ||u.getUsername().isEmpty() ||u.getEmail().isEmpty() 
                 ||u.getGender().isEmpty() ||u.getUser_birthdate().isEmpty() ||u.getUser_password1().isEmpty() ||u.getUser_password2().isEmpty()){
             return true;
@@ -48,30 +50,30 @@ public class UserDAO {
         else return false;
     }
     
-    public static boolean password_short_length(User u){
+    public static boolean password_short_length(User u){//Checks if the password length is enough
         if(u.getUser_password1().length()<8){
             return true;
         }
         else return false;
     }
     
-    public static boolean password_mismatch(User u){
+    public static boolean password_mismatch(User u){//checks if the passwords mismatch or not. returns true if passwords missmatch else false
     if(u.getUser_password1().equals(u.getUser_password2())){
         return false;
     }
     else return true;
     }
     
-    public static boolean invallid_date(User u){
+    public static boolean invallid_date(User u){ //check if the birthdate is set ahead to current date
         Boolean status = true;
         String ubirthDate= u.getUser_birthdate();
         String ucreatedDate = u.getUser_created_date();
     Date date1; 
     Date date2;
         try {
-            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(ubirthDate);
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(ubirthDate);//generate a simple date format on yyyy-mm-date format
             date2 = new SimpleDateFormat("yyyy-MM-dd").parse(ucreatedDate);
-            if(date1.after(date2)){
+            if(date1.after(date2)){// checks if birthdate is after user created date
                 status=true;
             }
             else{
@@ -84,10 +86,10 @@ public class UserDAO {
     
     }
     
-    public static void addUser(User u){
+    public static void addUser(User u){//adds the user to database
         try {
             String query = "insert into userdb (user_firstname,user_lastname,username,user_email,user_gender,user_birthdate,user_password,user_is_admin,user_created_date,user_blocked_status) "
-                   + "values (?,?,?,?,?,?,?,?,?,?)";
+                   + "values (?,?,?,?,?,?,?,?,?,?)";//Sql query for adding user
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1,u.getFirst_name());
