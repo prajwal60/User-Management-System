@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author Your Name Prajwal Ghimire
+ * @authorPrajwal Ghimire
  */
 public class ForgotPasswordDAO {
     
