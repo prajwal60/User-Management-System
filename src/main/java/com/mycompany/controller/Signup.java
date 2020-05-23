@@ -53,8 +53,14 @@ public class Signup extends HttpServlet {
            HttpSession session = request.getSession(true);
            RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
            RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
-           if(UserDAO.username_exists(u)==true){//check if the user already exists
+           
+           if(UserDAO.username_exists(u)==true){//check if the username already exists
            session.setAttribute("message","Username already exists !!!");
+           rd.forward(request, response);
+           
+           }
+           else if(UserDAO.username_exists(u)==true){//check if the email already used
+           session.setAttribute("message","Email already used !!!");
            rd.forward(request, response);
            
            }
