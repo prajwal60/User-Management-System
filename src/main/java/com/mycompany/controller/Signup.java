@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mycompany.model.User;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -48,26 +50,36 @@ public class Signup extends HttpServlet {
             u.setUser_blocked_status("false");
             u.setUser_password1(request.getParameter("pass1"));
             u.setUser_passsword2(request.getParameter("pass2"));
-           
+           HttpSession session = request.getSession(true);
+           RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
+           RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
            if(UserDAO.username_exists(u)==true){//check if the user already exists
-           out.println("Username exists");
+           session.setAttribute("message","Username already exists !!!");
+           rd.forward(request, response);
+           
            }
            else if(UserDAO.password_mismatch(u)==true){//check if passwords mismatch
-               out.println("Passwords Missmatch");
+               session.setAttribute("message","Passwords don't match !!!!!");
+               rd.forward(request, response);
            }
            else if(UserDAO.empty_fields_detected(u)==true){//check if there are empty fields
-            out.println("Empty fields detected");
+            session.setAttribute("message","Empty fields detected");
+            rd.forward(request, response);
         }
            else if(UserDAO.password_short_length(u)==true){//check if the password is of appropriate length
-               out.println("Password must be at least 8 characters");
+               session.setAttribute("message","Password must be at least 8 characters");
+               
+               rd.forward(request, response);
            }
            else if(UserDAO.invallid_date(u)==true){//check if the birth date selected is invalid
-               out.println("Invalid date");
+               session.setAttribute("message","Birth date cannot be ahead of current date ");
+               rd.forward(request, response);
            }
            else{
             UserDAO.addUser(u);//Add user
            
-            out.println("All right");
+            session.setAttribute("message","Successfully registered. Now you can sign in");
+            rd1.forward(request, response);
            }
         }
     }
