@@ -36,7 +36,7 @@ public class Signup extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             User u = new User();
-            /* TODO output your page here. You may use following sample code. */
+            /* Get the values from form and set to setters on user class */
             u.setFirst_name(request.getParameter("firstname"));
             u.setLast_name(request.getParameter("lastname"));
             u.setUsername(request.getParameter("username"));
@@ -49,23 +49,23 @@ public class Signup extends HttpServlet {
             u.setUser_password1(request.getParameter("pass1"));
             u.setUser_passsword2(request.getParameter("pass2"));
            
-           if(UserDAO.username_exists(u)==true){
+           if(UserDAO.username_exists(u)==true){//check if the user already exists
            out.println("Username exists");
            }
-           else if(UserDAO.password_mismatch(u)==true){
+           else if(UserDAO.password_mismatch(u)==true){//check if passwords mismatch
                out.println("Passwords Missmatch");
            }
-           else if(UserDAO.empty_fields_detected(u)==true){
+           else if(UserDAO.empty_fields_detected(u)==true){//check if there are empty fields
             out.println("Empty fields detected");
         }
-           else if(UserDAO.password_short_length(u)==true){
+           else if(UserDAO.password_short_length(u)==true){//check if the password is of appropriate length
                out.println("Password must be at least 8 characters");
            }
-           else if(UserDAO.invallid_date(u)==true){
+           else if(UserDAO.invallid_date(u)==true){//check if the birth date selected is invalid
                out.println("Invalid date");
            }
            else{
-            UserDAO.addUser(u);
+            UserDAO.addUser(u);//Add user
            
             out.println("All right");
            }
