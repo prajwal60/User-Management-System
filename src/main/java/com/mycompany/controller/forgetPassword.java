@@ -30,7 +30,7 @@ public class forgetPassword extends HttpServlet {
         int passed = pd;
         return passed;
     }
-
+    public static String sender ;
     public forgetPassword() {
 
         System.out.println("sd =  " + value + " pd " + pd + "");
@@ -56,7 +56,8 @@ public class forgetPassword extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String to = request.getParameter("to");
-
+        sender = to;
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String username = "root";

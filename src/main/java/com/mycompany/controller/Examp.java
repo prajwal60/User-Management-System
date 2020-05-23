@@ -7,6 +7,11 @@ package com.mycompany.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,78 +23,64 @@ import javax.servlet.http.HttpServletResponse;
  * @author Your Name <Prajwal Ghimire>
  */
 public class Examp extends HttpServlet {
-int code = 111111;
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * 
-     */
-    ForgotPasswordDAO fp = new ForgotPasswordDAO();
+
+    public static String receiver;
+    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        try (PrintWriter out = response.getWriter()) {
-            String email = request.getParameter("oldEmail");
-            String pass = request.getParameter("NewPassword");
-            fp.ForgotPasswordDAO(email,pass);
-        }
-        
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String verify = request.getParameter("verifyCode");
-        int ver = Integer.parseUnsignedInt(verify);
-        PrintWriter out = response.getWriter();
-        
-        if(ver ==code){
-        RequestDispatcher rd=request.getRequestDispatcher("forgetPasswordRetrive.jsp");
-        out.print("Enter the received code below");
-        rd.include(request,response);
-        
-        }
-        else{
-            RequestDispatcher rd=request.getRequestDispatcher("verifyCode.jsp");
-            out.print("Sorry Verify code do not match");
-            rd.include(request,response);
+
+        try (PrintWriter out = response.getWriter()) {
+            out.print(forgetPassword.sender);
+            String em = (forgetPassword.sender);
+            
+            String newPass = request.getParameter("newPassword");
+            String repeatPass = request.getParameter("confirmPassword");
+            
+            if(newPass.isEmpty()||repeatPass.isEmpty()){
+                request.setAttribute("message", "All Fields are empty");
             }
+            else if(!newPass.equals(repeatPass)){
+                request.setAttribute("message", "Password do not match");
+            }
+            else{ 
+                
+                ForgotPasswordDAO fp = new ForgotPasswordDAO();
+                String id = fp.getId(em);
+                
+            boolean result = fp.ForgotPasswordDAO(id, newPass, repeatPass);
+            if(result = true){
+                out.print(result);
+            RequestDispatcher rd =request.getRequestDispatcher("index.jsp");
+            request.setAttribute("message","Please Login to continue");
+            out.print("pw changed");
+            rd.include(request, response);
+            }
+            }
+        }catch(Exception e){
+            out.println(e);
+        }
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

@@ -5,42 +5,55 @@
  */
 package com.mycompany.controller;
 
+import static java.lang.System.out;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
- * @authorPrajwal Ghimire
+ * @author Prajwal Ghimire
  */
 public class ForgotPasswordDAO {
-    
-    public void ForgotPasswordDAO(String email,String pass){
-        boolean status = false;
-        try{  
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String username = "root";
-            String password = "";
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC",username,password);
-            String id = "SELECT user_id FROM userdb WHERE user_email = "+email+"";
-            Integer _id = Integer.parseInt(id);
-            String query ="UPDATE userdb SET password=? WHERE id ="+_id+"";
 
-            PreparedStatement ps=con.prepareStatement(query);  
-            ps.setString(1,pass);  
-            ResultSet rs=ps.executeQuery();           
-            if (rs.next()){
+    Connection con = ConnectionClass.getConnection();
+
+    public boolean ForgotPasswordDAO(String id, String np, String repeat) {
+        boolean status = false;
+        try {
+
+            String query = "UPDATE userdb SET user_password=? WHERE user_id =?";
+            out.print(query);
+            PreparedStatement set = con.prepareStatement(query);
+            set.setString(1, Hashing.getHash(repeat));
+            set.setString(2, id);
+            boolean stat = set.executeUpdate() > 0;
+            out.print("Passed");
+            if (stat = true) {
                 status = true;
-            }
-            else
-                status = false;
-            
+            } 
+
+        } catch (NumberFormatException | SQLException e) {
+            System.out.println(e);
         }
-        catch(Exception e)
-        {System.out.println(e);} 
-        
+        return status;
     }
-    
-    
+
+    public String getId(String email) throws SQLException {
+
+        String sql = "SELECT user_id FROM userdb WHERE user_email= ?";
+
+        String id;
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setString(1, email);           
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            id = resultSet.getString("user_id");
+            resultSet.close();
+        }
+        return id;
+       
+    }
+
 }

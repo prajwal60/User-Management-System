@@ -25,8 +25,6 @@ public class Verify extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
        
-       
-        
     }
 
    

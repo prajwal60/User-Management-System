@@ -47,11 +47,7 @@
                     <h1 class="h4 text-gray-900 mb-2">Enter Verify Code</h1>
                     <p class="mb-4">Please Enter your Old Password and New one </p>
                     <form method="POST" action="Examp" class="user">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user " name="oldPassword" id="exampleInputEmail"  placeholder="Enter Old Password..." ><span class="btn-show-pass">
-							<i class="fa fa-eye"></i>
-						</span>
-                    </div> 
+                                    
                                       <div class="form-group">
                         <input type="password" class="form-control form-control-user" name="newPassword" id="exampleInputEmail"  placeholder="Enter New Password..."><span class="btn-show-pass">
 							<i class="fa fa-eye"></i>
@@ -62,8 +58,9 @@
                         <span class="btn-show-pass">
                             <i class="fa fa-eye"></i>
 						</span>
+                        <h3 style="color:red">${message}</h3>
                     </div>  
-                           <input type="submit" name="forgetPassword"  class="btn btn-primary btn-user btn-block" value="Reset Password"/>
+                           <input type="submit" class="btn btn-primary btn-user btn-block" value="Reset Password"/>
                            <span class="focus-input100"></span>
                     </form>
                     </div>
