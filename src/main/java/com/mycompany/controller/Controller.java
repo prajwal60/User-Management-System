@@ -27,7 +27,7 @@ public class Controller {
 
             PreparedStatement ps=con.prepareStatement(query);  
             ps.setString(1,name);  
-            ps.setString(2,Hashing.getHash(pass)); 
+            ps.setString(2,Hashing.getHash(pass));             
             ResultSet rs=ps.executeQuery();           
             if(rs.next()){
                 status = true;
