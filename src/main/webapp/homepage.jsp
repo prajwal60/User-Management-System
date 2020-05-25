@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="com.mycompany.controller.UpdateDelete"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -83,10 +84,10 @@
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Manage:</h6>
-                            <a class="collapse-item" href="login.html">Add User</a>
-                            <a class="collapse-item" href="register.html">View Users</a>
-                            <a class="collapse-item" href="forgot-password.html">Update User</a>
-                            <a class="collapse-item" href="forgot-password.html">Delete User</a>
+                            <a class="collapse-item" href="addUser.jsp">Add User</a>
+                            <a class="collapse-item" href="viewUser.jsp">View Users</a>
+                            <a class="collapse-item" href="updateUser.jsp">Update User</a>
+                            <a class="collapse-item" href="deleteUser.jsp">Delete User</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Admin Tasks:</h6>
                             <a class="collapse-item" href="404.html">Make Admin</a>
@@ -465,7 +466,7 @@
 
                                                                 String query = "select count(user_id) from userdb where user_blocked_status=? ";
                                                                 PreparedStatement ps = con.prepareStatement(query);
-                                                                ps.setBoolean(1, true);
+                                                                ps.setString(1, "true");
                                                                 ResultSet rs = ps.executeQuery();
                                                                 rs.next();
                                                                 int c = rs.getInt(1);
@@ -517,6 +518,8 @@
                                                     <th>Is Admin</th>
                                                     <th>User CreatedDate</th>
                                                     <th>Is Blocked</th>
+                                                    <th>Update</th>
+                                                    <th>Delete</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -565,7 +568,7 @@
                                                             out.print("</td>");
                                                             out.print("<td>");
                                                             out.print(rs.getBoolean(11));
-                                                            out.print("</td>");                                                                                                                       
+                                                            out.print("</td>");                                                               
                                                             out.print("</tr>");
                                                             out.print("</tbody>");
                                                                 
@@ -596,7 +599,7 @@
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2019</span>
+                                <span>Copyright &copy; User Management System 2020</span>
                             </div>
                         </div>
                     </footer>

@@ -27,7 +27,7 @@
                         <form action="Signup" method="POST" class="register-form" id="register-form">
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="firstname" id="name" placeholder="Full Name"/>
+                                <input type="text" name="firstname" id="name" placeholder="First Name"/>
                             </div>
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>

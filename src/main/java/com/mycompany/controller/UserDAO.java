@@ -5,8 +5,11 @@
  */
 package com.mycompany.controller;
 
+
 import com.mycompany.model.User;
+import static java.lang.System.out;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,8 +61,14 @@ public class UserDAO {
     }
     
     public static boolean empty_fields_detected(User u){//check for empty fields
-        if(u.getFirst_name().isEmpty() ||u.getLast_name().isEmpty() ||u.getUsername().isEmpty() ||u.getEmail().isEmpty() 
-                ||u.getGender().isEmpty() ||u.getUser_birthdate().isEmpty() ||u.getUser_password1().isEmpty() ||u.getUser_password2().isEmpty()){
+        if(u.getFirst_name().isEmpty() 
+                ||u.getLast_name().isEmpty() 
+                ||u.getUsername().isEmpty() 
+                ||u.getEmail().isEmpty() 
+                ||u.getGender().isEmpty() 
+                ||u.getUser_birthdate().isEmpty() 
+                ||u.getUser_password1().isEmpty() 
+                ||u.getUser_password2().isEmpty()){
             return true;
         }
         else return false;
@@ -124,4 +133,27 @@ public class UserDAO {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public static boolean updateUser(User u)throws SQLException{ 
+        boolean rowUpdated = false;
+        try{
+            Connection con = ConnectionClass.getConnection();
+            String query = "UPDATE userdb SET (user_firstname=?,user_lastname=?,username=?,user_email=?,user_gender=?,user_birthdate=?,user_password=? WHERE id=?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1,u.getFirst_name());
+            ps.setString(2,u.getLast_name());
+            ps.setString(3,u.getUsername());
+            ps.setString(4,u.getEmail());
+            ps.setString(5,u.getGender());
+            ps.setString(6,u.getUser_birthdate());
+            ps.setString(7,Hashing.getHash(u.getUser_password1()));
+            rowUpdated = ps.executeUpdate()>0;
+        }catch(Exception e){
+        out.print(e);
+        }
+        return rowUpdated;
+    }
+        
+        
 }
+    
+

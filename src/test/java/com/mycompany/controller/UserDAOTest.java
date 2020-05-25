@@ -123,8 +123,8 @@ public class UserDAOTest {
         u.setEmail("p@ggg");
         u.setGender("male");
         u.setUser_birthdate("2020-04-28");
-        u.setUser_password1("asdf");
-        u.setUser_passsword2("asdf");
+        u.setUser_password1("asdfghjkl");
+        u.setUser_passsword2("asdfghjkl");
         u.setUser_is_admin("false");
         u.setUser_created_date("2020-04-29");
         u.setUser_blocked_status("false");
