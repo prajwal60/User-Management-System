@@ -21,6 +21,8 @@
           <input type="hidden" name="uname" value="${username}"><br>
             <input type="submit" name="" value="History">
 
+              <a href="/User-Management-System/ShowHistory?uname=${username}">History</a>
+
         </form>
     </body>
 </html>
