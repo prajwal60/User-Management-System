@@ -5,6 +5,7 @@
  */
 package com.mycompany.controller;
 
+import com.mycompany.model.History;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mycompany.model.User;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
@@ -83,6 +88,15 @@ public class Signup extends HttpServlet {
            }
            else{
             UserDAO.addUser(u);//Add user
+            int id = UserDAO.getUserID(request.getParameter("username"));
+            String action = "Signed in as new user";
+            String time = LocalDateTime.now().toString();
+            History h = new History(id,time,action);
+                try {
+                    HistoryDAO.addHistory(h);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+                }
            
             session.setAttribute("message","Successfully registered. Now you can sign in");
             rd1.forward(request, response);

@@ -5,8 +5,13 @@
  */
 package com.mycompany.controller;
 
+import com.mycompany.model.History;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +26,7 @@ public class login extends HttpServlet {
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -42,8 +47,16 @@ public class login extends HttpServlet {
                 }
 		               
                 if(cll.validate(name, pass)==true){
+                    int id = UserDAO.getUserID(name);//get user id from the username provided above
+                    String action = "Logged in to the system";
+                    String time =  LocalDateTime.now().toString();
+                    
+                    History h = new History(id,time,action);//History instance
+                    
+                    HistoryDAO.addHistory(h);//add to history
+                    
                     RequestDispatcher rd=request.getRequestDispatcher("homepage.jsp");
-			rd.include(request,response);
+                    rd.include(request,response);
                 }
                 
                 
@@ -66,7 +79,11 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }
@@ -75,7 +92,11 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
   

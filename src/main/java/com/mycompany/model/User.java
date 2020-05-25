@@ -5,23 +5,11 @@
  */
 package com.mycompany.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author pguragain3
  */
 public class User {
-    private final String driver_path = "com.mysql.cj.jdbc.Driver";
-    private final String database_path = "jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC";
-    private final String user_name = "root";
-    private final String password = "";
     private int user_id;
     private String first_name;
     private String last_name;
