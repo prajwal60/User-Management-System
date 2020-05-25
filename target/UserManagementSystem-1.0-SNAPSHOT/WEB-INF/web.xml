@@ -29,8 +29,8 @@
         <servlet-class>com.mycompany.controller.Verify</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ShowHistory</servlet-name>
-        <servlet-class>com.mycompany.controller.ShowHistory</servlet-class>
+        <servlet-name>AddingUser</servlet-name>
+        <servlet-class>com.mycompany.controller.AddingUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -84,8 +84,8 @@
         <url-pattern>/Verify</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ShowHistory</servlet-name>
-        <url-pattern>/ShowHistory</url-pattern>
+        <servlet-name>AddingUser</servlet-name>
+        <url-pattern>/AddingUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

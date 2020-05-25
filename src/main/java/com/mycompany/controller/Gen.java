@@ -32,4 +32,12 @@ public class Gen {
      
     return reg_code;
    }
+   
+   public static int Pass(){
+   
+   Random random =new Random();
+   int pass = random.nextInt((999999999-111111111)-1)+111111111;
+   return pass;
+   
+   }
 }
