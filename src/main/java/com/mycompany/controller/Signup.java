@@ -25,9 +25,6 @@ import javax.servlet.http.HttpSession;
  * @author Asus
  */
 public class Signup extends HttpServlet {
-    
-    
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,52 +52,46 @@ public class Signup extends HttpServlet {
             u.setUser_blocked_status("false");
             u.setUser_password1(request.getParameter("pass1"));
             u.setUser_passsword2(request.getParameter("pass2"));
-           HttpSession session = request.getSession(true);
-           RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
-           RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
-           
-           if(UserDAO.username_exists(u)==true){//check if the username already exists
-           session.setAttribute("message","Username already exists !!!");
-           rd.forward(request, response);
-           
-           }
-           else if(UserDAO.username_exists(u)==true){//check if the email already used
-           session.setAttribute("message","Email already used !!!");
-           rd.forward(request, response);
-           
-           }
-           else if(UserDAO.password_mismatch(u)==true){//check if passwords mismatch
-               session.setAttribute("message","Passwords don't match !!!!!");
-               rd.forward(request, response);
-           }
-           else if(UserDAO.empty_fields_detected(u)==true){//check if there are empty fields
-            session.setAttribute("message","Empty fields detected");
-            rd.forward(request, response);
-        }
-           else if(UserDAO.password_short_length(u)==true){//check if the password is of appropriate length
-               session.setAttribute("message","Password must be at least 8 characters");
-               
-               rd.forward(request, response);
-           }
-           else if(UserDAO.invallid_date(u)==true){//check if the birth date selected is invalid
-               session.setAttribute("message","Birth date cannot be ahead of current date ");
-               rd.forward(request, response);
-           }
-           else{
-            UserDAO.addUser(u);//Add user
-            int id = UserDAO.getUserID(request.getParameter("username"));
-            String action = "Signed in as new user";
-            String time = LocalDateTime.now().toString();
-            History h = new History(id,time,action);
+            RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
+            RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
+            
+
+            if (UserDAO.username_exists(u) == true) {//check if the username already exists
+                request.setAttribute("message", "Username already exists !!!");
+                rd.forward(request, response);
+
+            } else if (UserDAO.username_exists(u) == true) {//check if the email already used
+                request.setAttribute("message", "Email already used !!!");
+                rd.forward(request, response);
+
+            } else if (UserDAO.password_mismatch(u) == true) {//check if passwords mismatch
+                request.setAttribute("message", "Passwords don't match !!!!!");
+                rd.forward(request, response);
+            } else if (UserDAO.empty_fields_detected(u) == true) {//check if there are empty fields
+                request.setAttribute("message", "Empty fields detected");
+                rd.forward(request, response);
+            } else if (UserDAO.password_short_length(u) == true) {//check if the password is of appropriate length
+                request.setAttribute("message", "Password must be at least 8 characters");
+
+                rd.forward(request, response);
+            } else if (UserDAO.invallid_date(u) == true) {//check if the birth date selected is invalid
+                request.setAttribute("message", "Birth date cannot be ahead of current date ");
+                rd.forward(request, response);
+            } else {
+                UserDAO.addUser(u);//Add user
+                int id = UserDAO.getUserID(request.getParameter("username"));
+                String action = "Signed in as new user";
+                String time = LocalDateTime.now().toString();
+                History h = new History(id, time, action);
                 try {
                     HistoryDAO.addHistory(h);
                 } catch (SQLException ex) {
                     Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
                 }
-           
-            session.setAttribute("message","Successfully registered. Now you can sign in");
-            rd1.forward(request, response);
-           }
+
+                request.setAttribute("message", "Successfully registered. Now you can sign in");
+                rd1.forward(request, response);
+            }
         }
     }
 
@@ -118,6 +109,7 @@ public class Signup extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *

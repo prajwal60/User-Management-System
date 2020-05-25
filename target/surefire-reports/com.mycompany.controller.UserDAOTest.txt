@@ -1,14 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.mycompany.controller.UserDAOTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.27 sec <<< FAILURE!
-com.mycompany.controller.UserDAOTest.testUsername_exists()  Time elapsed: 0.241 sec  <<< FAILURE!
-java.lang.NullPointerException
-	at com.mycompany.controller.UserDAO.username_exists(UserDAO.java:47)
-	at com.mycompany.controller.UserDAOTest.testUsername_exists(UserDAOTest.java:51)
-
-com.mycompany.controller.UserDAOTest.testAddUser()  Time elapsed: 0.001 sec  <<< FAILURE!
-java.lang.NullPointerException
-	at com.mycompany.controller.UserDAO.addUser(UserDAO.java:110)
-	at com.mycompany.controller.UserDAOTest.testAddUser(UserDAOTest.java:132)
-
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.312 sec

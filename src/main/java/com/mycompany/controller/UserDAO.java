@@ -145,4 +145,52 @@ public class UserDAO {
             return 0;
         }
     }
+    
+    public static boolean getUser_is_admin(String username){
+        boolean result = false;
+        try{
+            String query = "select user_is_admin from userdb where username=?";
+            
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1,username);
+            
+            ResultSet r1 = ps.executeQuery();
+            if(r1.next()){
+                String res = r1.getString(1);
+                if(res.equals("true")){
+                    result=true;
+                }
+                else result=false;
+                   
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        return result;
+    }
+    
+    public static boolean getUser_blocked_status(String username){
+        boolean result = false;
+        try{
+            String query = "select user_blocked_status from userdb where username=?";
+            
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1,username);
+            
+            ResultSet r1 = ps.executeQuery();
+            if(r1.next()){
+                String res = r1.getString(1);
+                if(res.equals("true")){
+                    result=true;
+                }
+                else result=false;
+                   
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        return result;
+    }
 }

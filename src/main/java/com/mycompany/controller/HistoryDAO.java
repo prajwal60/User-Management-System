@@ -39,7 +39,7 @@ public class HistoryDAO {
     public static ArrayList<History> getUserHistory(String username) throws SQLException {
         int id = UserDAO.getUserID(username);
 
-        String query = "select * from history where userid=?"; //get all values for matching userid
+        String query = "select * from history where user_id=?"; //get all values for matching userid
 
         PreparedStatement ps = conn.prepareStatement(query);
 

@@ -14,4 +14,4 @@ CREATE TABLE userdb (
   UNIQUE KEY user_id_UNIQUE (user_id),
   UNIQUE KEY username_UNIQUE (username)) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
   
-  CREATE TABLE history ( history_id int(6) NOT NULL AUTO_INCREMENT, user_id int(6) NOT NULL, FOREIGN KEY(user_id) REFERENCES userdb(user_id), login_time varchar(30) NOT NULL, logout_time varchar(30) NOT NULL, action_performed varchar(50), PRIMARY KEY (history_id), UNIQUE KEY history_id_UNIQUE (history_id)) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1
+  CREATE TABLE history ( history_id int(6) NOT NULL AUTO_INCREMENT, user_id int(6) NOT NULL, FOREIGN KEY(user_id) REFERENCES userdb(user_id),time varchar(30) NOT NULL,action_performed varchar(50), PRIMARY KEY (history_id)) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1

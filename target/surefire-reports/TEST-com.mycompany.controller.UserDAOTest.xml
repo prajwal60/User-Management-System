@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="2" name="com.mycompany.controller.UserDAOTest" time="0.269" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="com.mycompany.controller.UserDAOTest" time="0.311" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.7+10-post-Ubuntu-3ubuntu1"/>
@@ -60,86 +60,10 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testUsername_exists" time="0.241">
-    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
-	at com.mycompany.controller.UserDAO.username_exists(UserDAO.java:47)
-	at com.mycompany.controller.UserDAOTest.testUsername_exists(UserDAOTest.java:51)
-</failure>
-    <system-out>username_exists
-</system-out>
-    <system-err>May 25, 2020 10:22:26 AM com.mycompany.controller.ConnectionClass getConnection
-SEVERE: null
-com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
-	at com.mysql.cj.jdbc.ConnectionImpl.&lt;init&gt;(ConnectionImpl.java:456)
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at com.mycompany.controller.ConnectionClass.getConnection(ConnectionClass.java:27)
-	at com.mycompany.controller.UserDAO.&lt;clinit&gt;(UserDAO.java:26)
-	at com.mycompany.controller.UserDAOTest.testUsername_exists(UserDAOTest.java:51)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethod(PojoTestSet.java:151)
-	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethods(PojoTestSet.java:102)
-	at org.apache.maven.surefire.junit.PojoTestSet.execute(PojoTestSet.java:83)
-	at org.apache.maven.surefire.junit.JUnit3Provider.executeTestSet(JUnit3Provider.java:121)
-	at org.apache.maven.surefire.junit.JUnit3Provider.invoke(JUnit3Provider.java:98)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:91)
-	at com.mysql.cj.NativeSession.connect(NativeSession.java:144)
-	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:956)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:826)
-	... 26 more
-Caused by: java.net.ConnectException: Connection refused (Connection refused)
-	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
-	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
-	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
-	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:403)
-	at java.base/java.net.Socket.connect(Socket.java:609)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:155)
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:65)
-	... 29 more
-
-</system-err>
-  </testcase>
-  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testEmpty_fields_detected" time="0.004"/>
-  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testPassword_short_length" time="0.001"/>
-  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testPassword_mismatch" time="0"/>
-  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testInvallid_date" time="0.022"/>
-  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testAddUser" time="0.001">
-    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
-	at com.mycompany.controller.UserDAO.addUser(UserDAO.java:110)
-	at com.mycompany.controller.UserDAOTest.testAddUser(UserDAOTest.java:132)
-</failure>
-    <system-out>adduser
-</system-out>
-  </testcase>
+  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testUsername_exists" time="0.297"/>
+  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testEmpty_fields_detected" time="0"/>
+  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testPassword_short_length" time="0"/>
+  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testPassword_mismatch" time="0.001"/>
+  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testInvallid_date" time="0.002"/>
+  <testcase classname="com.mycompany.controller.UserDAOTest" name="com.mycompany.controller.UserDAOTest.testAddUser" time="0.011"/>
 </testsuite>

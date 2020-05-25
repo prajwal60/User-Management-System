@@ -8,6 +8,11 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+    <%
+    if(session.getAttribute("username")==null){
+        response.sendRedirect("index.jsp");
+    }
+    %>
     <head>
         <title>Table V01</title>
         <meta charset="UTF-8">
@@ -50,6 +55,7 @@
                                     <td class="column2">${history.time}</td>
                                     <td class="column6">${history.action_performed}</td>
                                 </tr>
+                                </c:forEach>
 
 
                             </tbody>
