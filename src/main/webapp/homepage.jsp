@@ -576,7 +576,16 @@
                                                             out.print("</td>");
                                                             out.print("<td>");
                                                             out.print(rs.getBoolean(11));
-                                                            out.print("</td>");                                                               
+                                                            out.print("</td>"); 
+                                                            
+                                                            out.print("<td>");
+                                                            out.print("<a href=\"#\"> Update </a>");
+                                                            out.print("</td>");
+                                                            
+                                                            out.print("<td>");
+                                                            out.print("<a href=\"#\"> Delete </a>");
+                                                            out.print("</td>");
+                                                            
                                                             out.print("</tr>");
                                                             out.print("</tbody>");
                                                                 
