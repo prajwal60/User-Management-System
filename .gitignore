@@ -3,3 +3,12 @@ target/classes/.netbeans_automatic_build
 target/test-classes/.netbeans_automatic_build
 target/classes/.netbeans_automatic_build
 target/UserManagementSystem-1.0-SNAPSHOT/gfv5ee8.dpf
+target/maven-archiver/pom.properties
+nb-configuration.xml
+target/maven-archiver/pom.properties
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+target/surefire-reports/com.mycompany.controller.UserDAOTest.txt
+target/surefire-reports/TEST-com.mycompany.controller.UserDAOTest.xml

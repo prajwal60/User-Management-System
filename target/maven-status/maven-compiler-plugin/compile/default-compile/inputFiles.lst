@@ -1,13 +1,15 @@
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/HistoryDAO.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/EmailUtility.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/ForgotPasswordDAO.java
+/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/EmailUtility.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Signup.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/usermanagementsystem/resources/JavaEE8Resource.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Controller.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/UserDAO.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Gen.java
-/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/login.java
+/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/ShowHistory.java
+/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/AddingUser.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/model/History.java
+/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/login.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Examp.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Verify.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/ConnectionClass.java
