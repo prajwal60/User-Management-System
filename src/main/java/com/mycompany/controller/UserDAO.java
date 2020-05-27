@@ -131,11 +131,11 @@ public class UserDAO {
             String query = "select user_id from userdb where username=?";
 
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1,username);
+            ps.setString(1, username);
             ResultSet r1 = ps.executeQuery();
-            if(r1.next()){
+            if (r1.next()) {
                 int id = r1.getInt(1);
-            return id;
+                return id;
             }
             int id = r1.getInt(1);
             return id;
@@ -146,51 +146,114 @@ public class UserDAO {
         }
     }
     
-    public static boolean getUser_is_admin(String username){
-        boolean result = false;
-        try{
-            String query = "select user_is_admin from userdb where username=?";
-            
+    public static int getUsernameByID(String username) {
+        try {
+            String query = "select user_id from userdb where username=?";
+
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1,username);
-            
+            ps.setString(1, username);
             ResultSet r1 = ps.executeQuery();
-            if(r1.next()){
+            if (r1.next()) {
+                int id = r1.getInt(1);
+                return id;
+            }
+            int id = r1.getInt(1);
+            return id;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
+
+    public static boolean getUser_is_admin(String username) {
+        boolean result = false;
+        try {
+            String query = "select user_is_admin from userdb where username=?";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+
+            ResultSet r1 = ps.executeQuery();
+            if (r1.next()) {
                 String res = r1.getString(1);
-                if(res.equals("true")){
-                    result=true;
+                if (res.equals("true")) {
+                    result = true;
+                } else {
+                    result = false;
                 }
-                else result=false;
-                   
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
         return result;
     }
-    
-    public static boolean getUser_blocked_status(String username){
+
+    public static boolean getUser_blocked_status(String username) {
         boolean result = false;
-        try{
+        try {
             String query = "select user_blocked_status from userdb where username=?";
-            
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+
+            ResultSet r1 = ps.executeQuery();
+            if (r1.next()) {
+                String res = r1.getString(1);
+                if (res.equals("true")) {
+                    result = true;
+                } else {
+                    result = false;
+                }
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return result;
+    }
+
+    public static User getUserProfile(String username) {
+            User u;
+        try {
+            String query = "select user_firstname,user_lastname,username,user_email,user_gender,user_birthdate from userdb where username=?";
+
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1,username);
             
-            ResultSet r1 = ps.executeQuery();
-            if(r1.next()){
-                String res = r1.getString(1);
-                if(res.equals("true")){
-                    result=true;
-                }
-                else result=false;
-                   
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                u = new User(rs.getString("user_firstname"),rs.getString("user_lastname"),rs.getString("username"),rs.getString("user_email"),rs.getString("user_gender"),rs.getString("user_birthdate"));
+            return u;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             
         }
-        return result;
+        return null;
+        
+    }
+    
+    public static void updateUser(User u){
+        try {
+            String query = "update userdb set user_firstname=?,user_lastname=?,username=?,user_email=?,user_gender=?,user_birthdate=? where username=?";//Sql query for updatng user in database
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, u.getFirst_name());
+            ps.setString(2, u.getLast_name());
+            ps.setString(3, u.getUsername());
+            ps.setString(4, u.getEmail());
+            ps.setString(5, u.getGender());
+            ps.setString(6, u.getUser_birthdate());
+            ps.setString(7, u.getUsername());
+
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

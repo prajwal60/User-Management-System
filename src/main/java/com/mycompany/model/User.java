@@ -21,7 +21,22 @@ public class User {
     private String user_password2;
     private String user_is_admin;
     private String user_blocked_status;
-    private String user_created_date;    
+    private String user_created_date;  
+
+    public User(String first_name, String last_name, String username, String email, String gender, String user_birthdate) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.username = username;
+        this.email = email;
+        this.gender = gender;
+        this.user_birthdate = user_birthdate;
+    }
+
+    public User() {
+    }
+    
+    
+    
     /**
      * @return the user_id
      */

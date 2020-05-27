@@ -56,7 +56,7 @@ public class Signup extends HttpServlet {
             RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
             
 
-            if (UserDAO.username_exists(u) == true) {//check if the username already exists
+            if (UserDAO.email_exists(u) == true) {//check if the username already exists
                 request.setAttribute("message", "Username already exists !!!");
                 rd.forward(request, response);
 

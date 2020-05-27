@@ -10,6 +10,7 @@
 <html lang="en">
     <%
     if(session.getAttribute("username")==null){
+        request.setAttribute("message", "You need to be logged in !!");
         response.sendRedirect("index.jsp");
     }
     %>

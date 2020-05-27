@@ -1,3 +1,4 @@
+/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/UpdateUser.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/HistoryDAO.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/ForgotPasswordDAO.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/EmailUtility.java
@@ -12,6 +13,7 @@
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/login.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Examp.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Verify.java
+/home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/ViewUserProfile.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/ConnectionClass.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/model/User.java
 /home/pguragain3/Prabesh/NetBeans Project/User-Management-System/src/main/java/com/mycompany/controller/Hashing.java
