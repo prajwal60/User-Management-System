@@ -38,9 +38,9 @@ public class SearchDAO {
         ArrayList<User> list = new ArrayList<>();//new arraylist which will store all Data of given users
 
         while (rs.next()) {
-            User u = new User(rs.getInt("user_id"),rs.getString("first_name"), rs.getString("last_name"),username,rs.getString("email"),rs.getString("gender"),rs.getString("user_birthdate"),rs.getString("user_is_admin"),rs.getString("user_blocked_status"),rs.getString("user_created_date"));//iterate through every row of result set and add it to arraylist
+            User u = new User(rs.getInt("user_id"),rs.getString("user_firstname"), rs.getString("user_lastname"),username,rs.getString("user_email"),rs.getString("user_gender"),rs.getString("user_birthdate"),rs.getString("user_is_admin"),rs.getString("user_blocked_status"),rs.getString("user_created_date"));//iterate through every row of result set and add it to arraylist
             list.add(u);
-            out.print("allRight");
+            
         }
         return list;
     }
