@@ -39,7 +39,8 @@ public class UpdateUser extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            out.println("all right");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             if(request.getParameter("req").equals("show")){
                 RequestDispatcher rd1 = request.getRequestDispatcher("UpdateProfile.jsp");
                 HttpSession session = request.getSession();

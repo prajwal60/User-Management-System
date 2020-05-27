@@ -246,7 +246,7 @@
                     </fieldset>
 
                     <fieldset>
-                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                        <button type="submit" id="contact-submit">Submit</button>
                     </fieldset>
                     <p class="copyright">Change Your Password <a href="https://colorlib.com" target="_blank">Here</a></p>
                 </form>
