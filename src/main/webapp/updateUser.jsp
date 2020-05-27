@@ -68,7 +68,7 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Lists : </h6>
-                            <a class="collapse-item" href="buttons.html">Total User</a>
+                            <a class="collapse-item" href="totalUser.jsp">Total User</a>
                             <a class="collapse-item" href="cards.html">New User</a>
                             <a class="collapse-item" href="buttons.html">Old Users</a>
 
@@ -127,14 +127,20 @@
                         <!-- Topbar Search -->
                         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="search">
+                                <%
+                                    String search = request.getParameter("search");
+                                    session.setAttribute("search", search);
+                                
+                                %>
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
+                                    <button href="search.jsp" class="btn btn-primary" type="button">
                                         <i class="fas fa-search fa-sm"></i>
                                     </button>
                                 </div>
                             </div>
                         </form>
+
 
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
@@ -159,52 +165,56 @@
                                 </div>
                             </li>
 
-                            <!-- Nav Item - Alerts -->
+ <!-- Nav Item - Alerts -->
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
                                     <!-- Counter - Alerts -->
-                                    <span class="badge badge-danger badge-counter">3+</span>
+                                    <span class="badge badge-danger badge-counter">
+                                        <%
+                                                        if (session != null) {
+                                                            try {
+                                                                Class.forName("com.mysql.cj.jdbc.Driver");
+                                                                String username = "root";
+                                                                String password = "";
+                                                                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+                                                                String toda = java.time.LocalDate.now().toString();
+                                                                String query = "select count(user_id) from userdb where user_created_date=? ";
+                                                                PreparedStatement ps = con.prepareStatement(query);
+                                                                ps.setString(1, toda);
+                                                                ResultSet rs = ps.executeQuery();
+                                                                rs.next();
+                                                                int c = rs.getInt(1);
+
+                                                                out.print(c);
+
+                                                            } catch (Exception e) {
+                                                                out.println(e);
+                                                            }
+                                                        }
+                                                    %>+
+                                    </span>
                                 </a>
                                 <!-- Dropdown - Alerts -->
                                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                     <h6 class="dropdown-header">
                                         Alerts Center
                                     </h6>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <a class="dropdown-item d-flex align-items-center" href="newUser.jsp">
                                         <div class="mr-3">
                                             <div class="icon-circle bg-primary">
                                                 <i class="fas fa-file-alt text-white"></i>
                                             </div>
                                         </div>
                                         <div>
-                                            <div class="small text-gray-500">December 12, 2019</div>
-                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                            <div class="small text-gray-500"><%String day = java.time.LocalDate.now().toString();
+                                                out.print(day);
+                                                %></div>
+                                            <span class="font-weight-bold">
+                                                New User Created
+                                            </span>
                                         </div>
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-success">
-                                                <i class="fas fa-donate text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 7, 2019</div>
-                                            $290.29 has been deposited into your account!
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 2, 2019</div>
-                                            Spending Alert: We've noticed unusually high spending for your account.
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                 </div>
                             </li>
 
@@ -269,15 +279,16 @@
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%
-                                        if (session != null) {
-                                            if (session.getAttribute("user") != null) {
-                                                String name = (String) session.getAttribute("user");
-                                                out.print("Hello, " + name);
-                                            } else {
-                                                response.sendRedirect("index.html");
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                        <%
+                                            if (session != null) {
+                                                if (session.getAttribute("user") != null) {
+                                                    String name = (String) session.getAttribute("username");
+                                                    out.print("Hello, " + name);
+                                                } else {
+                                                    out.print("Hello");
+                                                }
                                             }
-                                        }
                                         %></span>
                                     <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                                 </a>

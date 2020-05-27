@@ -10,6 +10,21 @@ package com.mycompany.model;
  * @author pguragain3
  */
 public class User {
+
+    public User(int user_id, String first_name, String last_name, String username, String email, String gender, String user_birthdate, String user_is_admin, String user_blocked_status, String user_created_date) {
+        this.user_id = user_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.username = username;
+        this.email = email;
+        this.gender = gender;
+        this.user_birthdate = user_birthdate;
+        this.user_is_admin = user_is_admin;
+        this.user_blocked_status = user_blocked_status;
+        this.user_created_date = user_created_date;
+    }
+
+    
     private int user_id;
     private String first_name;
     private String last_name;
@@ -25,6 +40,19 @@ public class User {
     /**
      * @return the user_id
      */
+
+    public User() {
+    }
+
+    public User(int user_id,String first_name, String last_name, String username, String email, String gender, String user_birthdate) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.username = username;
+        this.email = email;
+        this.gender = gender;
+        this.user_birthdate = user_birthdate;
+    }
+    
     public int getUser_id() {
         return user_id;
     }

@@ -35,7 +35,7 @@ public class UpdateDelete {
                     Class.forName(driver_path);
                     Connection conn = DriverManager.getConnection(database_path,user_name, password);
 
-	           String sql = "UPDATE userdb SET first_name=?, last_name=?, email=?, gender=?, user_birthdate=?, user_password=? WHERE username=?";
+	           String sql = "UPDATE userdb SET first_name=?, last_name=?,username=?, email=?, gender=?, user_birthdate=? WHERE id=?";
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, first_name);
@@ -57,6 +57,7 @@ public class UpdateDelete {
 			ex.printStackTrace();
 		}
     }
+    	
     
     public void deleteUser(){
       try{
