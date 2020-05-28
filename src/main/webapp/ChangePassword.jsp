@@ -209,7 +209,7 @@
                 <li class="navitems"> <a href="/User-Management-System/ViewUserProfile" class="anchor">Profile</a> </li>
                 <li class="navitems"> <a href="/User-Management-System/ShowHistory?uname=${username}" class="anchor"> History</a> </li>
                 <li class="navitems"> <a href="/User-Management-System/TermsAndConditions.jsp" class="anchor">Terms and Conditions</a> </li>
-                <li class="navitems"> <a href="#" class="anchor">Logout</a> </li>
+                <li class="navitems"> <a href="/User-Management-system/Logout" class="anchor">Logout</a> </li>
             </nav>
         </div>
         <div class="update_body">

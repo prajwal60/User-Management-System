@@ -212,7 +212,7 @@
                 <li class="navitems"> <a href="/User-Management-System/ViewUserProfile" class="anchor">Profile</a> </li>
                 <li class="navitems"> <a href="/User-Management-System/ShowHistory?uname=${username}" class="anchor"> History</a> </li>
                 <li class="navitems"> <a href="/User-Management-System/TermsAndConditions.jsp" class="anchor">Terms and Conditions</a> </li>
-                <li class="navitems"> <a href="#" class="anchor">Logout</a> </li>
+                <li class="navitems"> <a href="/User-Management-system/Logout" class="anchor">Logout</a> </li>
             </nav>
         </div>
         <div class="update_body">
@@ -249,7 +249,9 @@
                     <fieldset>
                         <button type="submit" id="contact-submit">Submit</button>
                     </fieldset>
-                    <p>Change Your Password <a href="/User-Management-System/ChangePassword.jsp">Here</a></p>
+                    <p>Change Your Password <a href="/User-Management-System/ChangePassword.jsp"><h4>Here</h4></a></p>
+                    <p><a href="/User-Management-System/DeleteUserAccount"><h3>Delete Account</h3></a></p>
+               
                 </form>
             </div>
 

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" session="true" language="java"%>
+<%response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");%>
 <!DOCTYPE html>
 <html>
     <head>
