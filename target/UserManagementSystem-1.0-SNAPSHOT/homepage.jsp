@@ -92,6 +92,9 @@
                             <h6 class="collapse-header">Admin Tasks:</h6>
                             <a class="collapse-item" href="MakeAdmin.jsp">Make Admin</a>
                             <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>
+                            
+                            <a class="collapse-item" href="BlockUser.jsp">Block User</a>
+                            <a class="collapse-item" href="UnblockUser.jsp">Unblock User</a>
                         </div>
                     </div>
                 </li>
