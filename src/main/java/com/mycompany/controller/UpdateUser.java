@@ -60,7 +60,7 @@ public class UpdateUser extends HttpServlet {
                     request.setAttribute("message", "You need to login first");
                     rd.forward(request, response);
                 } else {
-                    RequestDispatcher rd1 = request.getRequestDispatcher("UpdateProfile.jsp");
+                    RequestDispatcher rd1 = request.getRequestDispatcher("UpdateUserProfile.jsp");
                     HttpSession session = request.getSession();
 
                     String username = (String) session.getAttribute("username");
