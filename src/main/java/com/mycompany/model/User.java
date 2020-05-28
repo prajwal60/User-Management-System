@@ -56,8 +56,7 @@ public class User {
      * @return the user_id
      */
 
-    public User() {
-    }
+    
 
     public User(int user_id,String first_name, String last_name, String username, String email, String gender, String user_birthdate) {
         this.first_name = first_name;
@@ -68,9 +67,7 @@ public class User {
         this.user_birthdate = user_birthdate;
     }
 
-    public User(String parameter, String parameter0, String parameter1, String parameter2, String parameter3, String parameter4) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
     
     public int getUser_id() {
         return user_id;

@@ -317,7 +317,7 @@
                     </nav>
                     <!-- End of Topbar -->
                     <main>
-                        <form action="UpdateUser" method="POST">
+                        <form action="UpdateUserAdmin" method="POST">
                         
                         <div class="container-fluid">
                             <h1 class="mt-4">Tables</h1>

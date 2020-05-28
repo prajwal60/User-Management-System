@@ -86,13 +86,8 @@ public class UpdateUser extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             
 
-            RequestDispatcher rd = request.getRequestDispatcher("UpdatePage.jsp");
-            rd.include(request, response);
-
-        } catch (Exception e) {
-            out.print(e);
-        }
-    }
+         
+    
     
 
 

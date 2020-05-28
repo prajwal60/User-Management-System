@@ -40,7 +40,8 @@
 
         <servlet-name>ViewUserProfile</servlet-name>
         <servlet-class>com.mycompany.controller.ViewUserProfile</servlet-class>
-
+    </servlet>
+    <servlet>
         <servlet-name>Search</servlet-name>
         <servlet-class>com.mycompany.controller.Search</servlet-class>
     </servlet>
@@ -62,6 +63,11 @@
         <servlet-class>com.mycompany.controller.UpdateUser</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UpdateUserAdmin</servlet-name>
+        <servlet-class>com.mycompany.controller.UpdateUserAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        
 
         <servlet-name>ChangePassword</servlet-name>
         <servlet-class>com.mycompany.controller.ChangePassword</servlet-class>
@@ -73,7 +79,8 @@
     <servlet>
         <servlet-name>DeleteUserAccount</servlet-name>
         <servlet-class>com.mycompany.controller.DeleteUserAccount</servlet-class>
-
+ </servlet>
+    <servlet>
         <servlet-name>Updated</servlet-name>
         <servlet-class>com.mycompany.controller.Updated</servlet-class>
     </servlet>
@@ -157,7 +164,8 @@
 
         <servlet-name>ViewUserProfile</servlet-name>
         <url-pattern>/ViewUserProfile</url-pattern>
-
+  </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
     </servlet-mapping>
@@ -178,6 +186,10 @@
         <servlet-name>UpdateUser</servlet-name>
         <url-pattern>/UpdateUser</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>UpdateUserAdmin</servlet-name>
+        <url-pattern>/UpdateUserAdmin</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
 
         <servlet-name>ChangePassword</servlet-name>
@@ -190,7 +202,8 @@
     <servlet-mapping>
         <servlet-name>DeleteUserAccount</servlet-name>
         <url-pattern>/DeleteUserAccount</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Updated</servlet-name>
         <url-pattern>/Updated</url-pattern>
     </servlet-mapping>
