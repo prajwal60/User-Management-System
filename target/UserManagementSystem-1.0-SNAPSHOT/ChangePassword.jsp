@@ -9,6 +9,7 @@
 <html>
     <%@page import="com.mycompany.model.User"%>
     <%
+        response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
         if (session.getAttribute("username") == null) {
             request.setAttribute("message", "You need to be logged in !!");
             response.sendRedirect("index.jsp");

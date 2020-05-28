@@ -28,7 +28,7 @@ public class UserDAO {
     public static boolean email_exists(User u) {//check if the email is already in use
         Boolean result = false;
         try {
-            PreparedStatement st = conn.prepareStatement("select * from userdb where email = ?");//Query to fetch data from database
+            PreparedStatement st = conn.prepareStatement("select * from userdb where user_email = ?");//Query to fetch data from database
             st.setString(1, u.getEmail());
             ResultSet r1 = st.executeQuery();
             if (r1.next()) {//if results exist then

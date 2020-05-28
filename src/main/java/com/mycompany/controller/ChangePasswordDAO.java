@@ -57,7 +57,7 @@ public class ChangePasswordDAO {
             ps.setString(1,Hashing.getHash(new_password));
             ps.setString(2, username);
             
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ChangePasswordDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

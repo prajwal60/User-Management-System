@@ -4,7 +4,7 @@
     Author     : Prajwal Ghimire
 --%>
 
-
+<% response.setHeader("Cache-Control","no-cache,no-store,must-revalidate"); %>
 <%@page import="com.mycompany.controller.UpdateDelete"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>

@@ -9,6 +9,7 @@
 <html>
     <%@page import="com.mycompany.model.User"%>
     <%
+        response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
         if (session.getAttribute("username") == null) {
             request.setAttribute("message", "You need to be logged in !!");
             response.sendRedirect("index.jsp");
@@ -248,7 +249,7 @@
                     <fieldset>
                         <button type="submit" id="contact-submit">Submit</button>
                     </fieldset>
-                    <p class="copyright">Change Your Password <a href="/User-Management-System/ChangePassword.jsp" target="_blank">Here</a></p>
+                    <p>Change Your Password <a href="/User-Management-System/ChangePassword.jsp">Here</a></p>
                 </form>
             </div>
 

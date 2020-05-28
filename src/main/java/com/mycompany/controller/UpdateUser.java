@@ -39,43 +39,36 @@ public class UpdateUser extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println("all right");
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            if(request.getParameter("req").equals("show")){
-                RequestDispatcher rd1 = request.getRequestDispatcher("UpdateProfile.jsp");
-                HttpSession session = request.getSession();
-            
-            String username = (String)session.getAttribute("username");
-            
-            User u = UserDAO.getUserProfile(username);
 
-            request.setAttribute("userdata", u);
-            rd1.forward(request, response);
-            }
-            else if(request.getParameter("req").equals("update")){
-                User u = new User(request.getParameter("firstname"),request.getParameter("lastname"),request.getParameter("username"),request.getParameter("email"),request.getParameter("gender"),request.getParameter("birthdate"));
-               
-                HttpSession session = request.getSession();
-                session.removeAttribute("username");
-                session.invalidate();
-                UserDAO.updateUser(u);//Update user
-                int id = UserDAO.getUserID(u.getUsername());
-                String action = "Updated Profile Info";
-                String time = LocalDateTime.now().toString();
-                History h = new History(id, time, action);
-                try {
-                    HistoryDAO.addHistory(h);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+            if (request.getParameter("req").equals("show")) {
+                HttpSession s = request.getSession();
+                if (s.getAttribute("username")==null) {
+                    request.setAttribute("message", "You need to login first");
+                    rd.forward(request, response);
+                } else {
+                    RequestDispatcher rd1 = request.getRequestDispatcher("UpdateProfile.jsp");
+                    HttpSession session = request.getSession();
+
+                    String username = (String) session.getAttribute("username");
+
+                    User u = UserDAO.getUserProfile(username);
+
+                    request.setAttribute("userdata", u);
+                    rd1.forward(request, response);
                 }
 
-                request.setAttribute("message", "Successfully Updated");
-                rd.forward(request, response);
+            } else if (request.getParameter("req").equals("update")) {
+                User u = new User(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("username"), request.getParameter("email"), request.getParameter("gender"), request.getParameter("birthdate"));
+
+              
+                UserDAO.updateUser(u);//Update user
+                
+                LogoutDAO.logout(request.getParameter("username"), request, response);
             }
-            }
-            
         }
-    
+
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -117,4 +110,3 @@ public class UpdateUser extends HttpServlet {
     }// </editor-fold>
 
 }
-

@@ -35,18 +35,26 @@ public class ViewUserProfile extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            HttpSession s = request.getSession();
+                if (s.getAttribute("username")==null) {
+                    RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
+                    request.setAttribute("message", "You need to login first");
+                    rd1.forward(request, response);
+                }
+                else{
+                    
+                
             HttpSession session = request.getSession();
             String username = session.getAttribute("username").toString();
             
             User u = UserDAO.getUserProfile(username);
-            
-            //String ud[] = {u.getFirst_name(),u.getLast_name(),u.getUsername(),u.getEmail(),u.getGender(),u.getUser_birthdate()};
             
             request.setAttribute("userdata", u);
             RequestDispatcher rd = request.getRequestDispatcher("UserProfile.jsp");
             
             
             rd.forward(request, response);
+        }
         }
     }
 
