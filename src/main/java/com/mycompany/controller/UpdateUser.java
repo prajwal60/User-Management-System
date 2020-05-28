@@ -5,6 +5,7 @@
  */
 package com.mycompany.controller;
 
+
 import com.mycompany.model.History;
 import com.mycompany.model.User;
 import java.io.IOException;
@@ -13,16 +14,27 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.mycompany.model.User;
+import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
+
+
 
 /**
  *
- * @author pguragain3
+ * @author Your Name <Prajwal Ghimire>
+
  */
 public class UpdateUser extends HttpServlet {
 
@@ -39,6 +51,7 @@ public class UpdateUser extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 
             if (request.getParameter("req").equals("show")) {
@@ -70,6 +83,19 @@ public class UpdateUser extends HttpServlet {
 
     }
 
+            /* TODO output your page here. You may use following sample code. */
+            
+
+            RequestDispatcher rd = request.getRequestDispatcher("UpdatePage.jsp");
+            rd.include(request, response);
+
+        } catch (Exception e) {
+            out.print(e);
+        }
+    }
+    
+
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -83,6 +109,21 @@ public class UpdateUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        
+        
+        
+        
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            
+
+           
+
+        } catch (Exception e) {
+            out.print(e);
+        }
+
     }
 
     /**

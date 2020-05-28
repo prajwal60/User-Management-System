@@ -68,9 +68,9 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Lists : </h6>
-                            <a class="collapse-item" href="buttons.html">Total User</a>
-                            <a class="collapse-item" href="cards.html">New User</a>
-                            <a class="collapse-item" href="buttons.html">Old Users</a>
+                            <a class="collapse-item" href="viewUser.jsp">Total User</a>
+                            <a class="collapse-item" href="newUser.jsp">New User</a>
+                            <a class="collapse-item" href="oldUser.jsp">Old Users</a>
 
                         </div>
                     </div>
@@ -87,12 +87,12 @@
                             <h6 class="collapse-header">Manage:</h6>
                             <a class="collapse-item" href="addUser.jsp">Add User</a>
                             <a class="collapse-item" href="viewUser.jsp">View Users</a>
-                            <a class="collapse-item" href="forgot-password.html">Update User</a>
-                            <a class="collapse-item" href="forgot-password.html">Delete User</a>
+                            <a class="collapse-item" href="UpdateUser.jsp">Update User</a>
+                            <a class="collapse-item" href="DeleteUser.jsp">Delete User</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Admin Tasks:</h6>
-                            <a class="collapse-item" href="404.html">Make Admin</a>
-                            <a class="collapse-item" href="blank.html">Remove Admin</a>
+                            <a class="collapse-item" href="MakeAdmin.jsp">Make Admin</a>
+                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>
                         </div>
                     </div>
                 </li>
@@ -125,16 +125,18 @@
                         </button>
 
                         <!-- Topbar Search -->
-                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="Post" action="Search">
                             <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="search">
+               
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
+                                    <button  class="btn btn-primary" type="submit">
                                         <i class="fas fa-search fa-sm"></i>
                                     </button>
                                 </div>
                             </div>
                         </form>
+
 
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
@@ -159,54 +161,59 @@
                                 </div>
                             </li>
 
-                            <!-- Nav Item - Alerts -->
+                             <!-- Nav Item - Alerts -->
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
                                     <!-- Counter - Alerts -->
-                                    <span class="badge badge-danger badge-counter">3+</span>
+                                    <span class="badge badge-danger badge-counter">
+                                        <%
+                                                        if (session != null) {
+                                                            try {
+                                                                Class.forName("com.mysql.cj.jdbc.Driver");
+                                                                String username = "root";
+                                                                String password = "";
+                                                                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+                                                                String toda = java.time.LocalDate.now().toString();
+                                                                String query = "select count(user_id) from userdb where user_created_date=? ";
+                                                                PreparedStatement ps = con.prepareStatement(query);
+                                                                ps.setString(1, toda);
+                                                                ResultSet rs = ps.executeQuery();
+                                                                rs.next();
+                                                                int c = rs.getInt(1);
+
+                                                                out.print(c);
+
+                                                            } catch (Exception e) {
+                                                                out.println(e);
+                                                            }
+                                                        }
+                                                    %>+
+                                    </span>
                                 </a>
                                 <!-- Dropdown - Alerts -->
                                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                     <h6 class="dropdown-header">
                                         Alerts Center
                                     </h6>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <a class="dropdown-item d-flex align-items-center" href="newUser.jsp">
                                         <div class="mr-3">
                                             <div class="icon-circle bg-primary">
                                                 <i class="fas fa-file-alt text-white"></i>
                                             </div>
                                         </div>
                                         <div>
-                                            <div class="small text-gray-500">December 12, 2019</div>
-                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                            <div class="small text-gray-500"><%String day = java.time.LocalDate.now().toString();
+                                                out.print(day);
+                                                %></div>
+                                            <span class="font-weight-bold">
+                                                New User Created
+                                            </span>
                                         </div>
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-success">
-                                                <i class="fas fa-donate text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 7, 2019</div>
-                                            $290.29 has been deposited into your account!
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 2, 2019</div>
-                                            Spending Alert: We've noticed unusually high spending for your account.
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                 </div>
                             </li>
+
 
                             <!-- Nav Item - Messages -->
                             <li class="nav-item dropdown no-arrow mx-1">
@@ -269,27 +276,29 @@
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%
-                                        if (session != null) {
-                                            if (session.getAttribute("user") != null) {
-                                                String name = (String) session.getAttribute("user");
-                                                out.print("Hello, " + name);
-                                            } else {
-                                                response.sendRedirect("index.html");
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                        <%
+                                            if (session != null) {
+                                                if (session.getAttribute("username") != null) {
+                                                    String name = (String) session.getAttribute("username");
+                                                    out.print("Hello, " + name);
+                                                } else {
+                                                    response.sendRedirect("index.html");
+                                                }
                                             }
-                                        }
-                                        %></span>
+                                        %>
+                                    </span>
                                     <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="UpdateProfile.jsp">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
+                                        Update Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="DeleteProfile.jsp">
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
+                                        Delete Profile
                                     </a>
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -307,61 +316,105 @@
 
                     </nav>
                     <!-- End of Topbar -->
-                    <div class="main">
+                    <main>
+                        <form action="UpdateUser" method="POST">
+                        
+                        <div class="container-fluid">
+                            <h1 class="mt-4">Tables</h1>
 
-                        <section class="signup">
-                            <div class="container">
-                                <div class="signup-content">
-                                    <div class="signup-form">
-                                        <h2 class="form-title">Update User</h2>
-                                        <form action="AddingUser" method="POST" class="register-form" id="register-form">
-                                            <div class="form-group">
-                                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                                <input type="text" name="firstname" id="name" placeholder="First Name"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                                <input type="text" name="lastname" id="name" placeholder="Last Name"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="username"><i class="zmdi zmdi-account zmdi-accounts-add"></i></label>
-                                                <input type="text" name="username" id="username" placeholder="Username"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                                <input type="email" name="email" id="email" placeholder="Your Email"/>
-                                            </div>                            
-                                            <div class="form-group">
-                                                <label for="gender"><i class="zmdi zmdi-male-female"></i></label>
-                                                <input type="text" name="gender" id="gender" placeholder="Gender"/>
-                                            </div>                            
-                                            <div class="form-group">
-                                                <label for="date"><i class="zmdi zmdi-calendar"></i></label>
-                                                <input type="date" name="birthdate" id="date" placeholder="Birthdate mm/dd/yyyy"/>
-                                            </div>
+                            <div class="card mb-4">
+                                <div class="card-body" ><marquee style="color: #8ebf42 " behaviour="alternate" direction="right">List of Users</marquee> Here is the list of users</div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>User ID</th>
+                                                    <th>First Name</th>
+                                                    <th>Last name</th>
+                                                    <th>Username</th>
+                                                    <th>Email</th>
+                                                    <th>Gender</th>
+                                                    <th>BirthDate</th>
+                                                    <th>Password</th>
+                                                    <th>Is Admin</th>
+                                                    <th>User CreatedDate</th>
+                                                    <th>Is Blocked</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <%
+                                                if (session != null) {
+                                                    try {
+                                                        Class.forName("com.mysql.cj.jdbc.Driver");
+                                                        String username = "root";
+                                                        String password = "";
+                                                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
 
-                                            <div class="form-group">
-                                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                                            </div>
+                                                        String query = "select * from userdb";
+                                                        PreparedStatement ps = con.prepareStatement(query);
+                                                        ResultSet rs = ps.executeQuery();
+                                                        while (rs.next()) {
+                                                            out.print("<tbody>");
+                                                            out.print("<tr><td>");
+                                                            out.println(rs.getInt(1));                                                            
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print(rs.getString(2));
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print(rs.getString(3));
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print(rs.getString(4));
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print(rs.getString(5));
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print(rs.getString(6));
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print(rs.getString(7));
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print("Sorry !!");
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print(rs.getString(9));
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print(rs.getString(10));
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+                                                            out.print(rs.getBoolean(11));
+                                                            out.print("</td>");
+                                                            out.print("<td>");
+//                                                            out.print("<input name=\"user_id\"  type=\"hidden\" value="+rs.getString(1)+" required>");
+                                                            out.print("<button value="+rs.getString(1)+" name=\"user_id\" type=\"submit\"> Update</button> ");
+                                                            out.print("</td>");
+                                                            out.print("</tr>");
+                                                            out.print("</tbody>");
+                                                             RequestDispatcher rd = request.getRequestDispatcher("UpdatePage.jsp");
+            rd.include(request, response);
 
-                                            <div class="form-group form-button">
-                                                <input type="submit" name="signup" id="signup" class="form-submit" value="Update User"/>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="signup-image">
-                                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
+                                                        }
+
+                                                    } catch (Exception e) {
+                                                        out.println(e);
+                                                    }
+                                                }
+                                            %>
+
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        </section>
-
-                        <!-- Sing in  Form -->
-
-
-                    </div>
-
+                        </div>
+                          </form>                                </main>
                     <!-- /.container-fluid -->
 
 

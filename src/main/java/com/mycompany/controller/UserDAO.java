@@ -216,7 +216,10 @@ public class UserDAO {
         return result;
     }
 
-    public static User getUserProfile(String username) {
+
+
+        public static User getUserProfile(String username) {
+
             User u;
         try {
             String query = "select user_firstname,user_lastname,username,user_email,user_gender,user_birthdate from userdb where username=?";
