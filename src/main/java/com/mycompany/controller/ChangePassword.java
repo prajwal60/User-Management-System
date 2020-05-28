@@ -59,7 +59,7 @@ public class ChangePassword extends HttpServlet {
            }
            else{
                try{
-               ChangePasswordDAO.changePassword(Hashing.getHash(new_password), username);
+               ChangePasswordDAO.changePassword(new_password, username);
                request.setAttribute("message","Your Password has changed Please Login Again");
                
                System.out.println(old_password);
@@ -71,9 +71,8 @@ public class ChangePassword extends HttpServlet {
                History h = new History(UserDAO.getUserID(username),LocalDateTime.now().toString(),"Changed Password");
                HistoryDAO.addHistory(h);
                
-               session.removeAttribute("username");
-               session.invalidate();
-               rd1.forward(request, response);
+               LogoutDAO.logout(username, request, response);
+               
                } catch (SQLException ex) {
                     Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
                 }
