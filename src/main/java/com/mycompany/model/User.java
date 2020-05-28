@@ -52,6 +52,10 @@ public class User {
         this.gender = gender;
         this.user_birthdate = user_birthdate;
     }
+
+    public User(String parameter, String parameter0, String parameter1, String parameter2, String parameter3, String parameter4) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public int getUser_id() {
         return user_id;

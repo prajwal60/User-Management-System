@@ -87,12 +87,12 @@
                             <h6 class="collapse-header">Manage:</h6>
                             <a class="collapse-item" href="addUser.jsp">Add User</a>
                             <a class="collapse-item" href="viewUser.jsp">View Users</a>
-                            <a class="collapse-item" href="updateUser.jsp">Update User</a>
-                            <a class="collapse-item" href="deleteUser.jsp">Delete User</a>
+                            <a class="collapse-item" href="UpdateUser.jsp">Update User</a>
+                            <a class="collapse-item" href="DeleteUser.jsp">Delete User</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Admin Tasks:</h6>
-                            <a class="collapse-item" href="404.html">Make Admin</a>
-                            <a class="collapse-item" href="blank.html">Remove Admin</a>
+                            <a class="collapse-item" href="MakeAdmin.jsp">Make Admin</a>
+                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>
                         </div>
                     </div>
                 </li>
@@ -125,21 +125,18 @@
                         </button>
 
                         <!-- Topbar Search -->
-                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="Post" action="Search">
                             <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" value="search">
-                                <%
-                                    String search = request.getParameter("search");
-                                    session.setAttribute("search", search);
-                                
-                                %>
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="search">
+
                                 <div class="input-group-append">
-                                    <button href="search.jsp" class="btn btn-primary" type="button">
+                                    <button  class="btn btn-primary" type="submit">
                                         <i class="fas fa-search fa-sm"></i>
                                     </button>
                                 </div>
                             </div>
                         </form>
+
 
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
@@ -164,34 +161,34 @@
                                 </div>
                             </li>
 
- <!-- Nav Item - Alerts -->
+                            <!-- Nav Item - Alerts -->
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
                                     <!-- Counter - Alerts -->
                                     <span class="badge badge-danger badge-counter">
                                         <%
-                                                        if (session != null) {
-                                                            try {
-                                                                Class.forName("com.mysql.cj.jdbc.Driver");
-                                                                String username = "root";
-                                                                String password = "";
-                                                                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
-                                                                String toda = java.time.LocalDate.now().toString();
-                                                                String query = "select count(user_id) from userdb where user_created_date=? ";
-                                                                PreparedStatement ps = con.prepareStatement(query);
-                                                                ps.setString(1, toda);
-                                                                ResultSet rs = ps.executeQuery();
-                                                                rs.next();
-                                                                int c = rs.getInt(1);
+                                            if (session != null) {
+                                                try {
+                                                    Class.forName("com.mysql.cj.jdbc.Driver");
+                                                    String username = "root";
+                                                    String password = "";
+                                                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+                                                    String toda = java.time.LocalDate.now().toString();
+                                                    String query = "select count(user_id) from userdb where user_created_date=? ";
+                                                    PreparedStatement ps = con.prepareStatement(query);
+                                                    ps.setString(1, toda);
+                                                    ResultSet rs = ps.executeQuery();
+                                                    rs.next();
+                                                    int c = rs.getInt(1);
 
-                                                                out.print(c);
+                                                    out.print(c);
 
-                                                            } catch (Exception e) {
-                                                                out.println(e);
-                                                            }
-                                                        }
-                                                    %>+
+                                                } catch (Exception e) {
+                                                    out.println(e);
+                                                }
+                                            }
+                                        %>+
                                     </span>
                                 </a>
                                 <!-- Dropdown - Alerts -->
@@ -294,13 +291,13 @@
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="UpdateProfile.jsp">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
+                                        Update Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="DeleteProfile.jsp">
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
+                                        Delete Profile
                                     </a>
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>

@@ -89,12 +89,12 @@
                             <h6 class="collapse-header">Manage:</h6>
                             <a class="collapse-item" href="addUser.jsp">Add User</a>
                             <a class="collapse-item" href="viewUser.jsp">View Users</a>
-                            <a class="collapse-item" href="updateUser.jsp">Update User</a>
-                            <a class="collapse-item" href="deleteUser.jsp">Delete User</a>
+                            <a class="collapse-item" href="UpdateUser.jsp">Update User</a>
+                            <a class="collapse-item" href="DeleteUser.jsp">Delete User</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Admin Tasks:</h6>
-                            <a class="collapse-item" href="404.html">Make Admin</a>
-                            <a class="collapse-item" href="blank.html">Remove Admin</a>
+                            <a class="collapse-item" href="MakeAdmin.jsp">Make Admin</a>
+                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>
                         </div>
                     </div>
                 </li>
@@ -281,14 +281,14 @@
                                     <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                                 </a>
                                 <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
+                                      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="UpdateProfile.jsp">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
+                                        Update Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="DeleteProfile.jsp">
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
+                                        Delete Profile
                                     </a>
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>

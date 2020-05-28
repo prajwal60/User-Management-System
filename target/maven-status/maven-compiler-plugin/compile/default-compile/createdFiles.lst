@@ -13,6 +13,7 @@ com\mycompany\controller\HistoryDAO.class
 com\mycompany\controller\AddingUser.class
 com\mycompany\controller\Hashing.class
 com\mycompany\controller\Verify.class
+com\mycompany\controller\session.class
 com\mycompany\controller\SearchDAO.class
 com\mycompany\usermanagementsystem\resources\JavaEE8Resource.class
 com\mycompany\controller\Gen.class

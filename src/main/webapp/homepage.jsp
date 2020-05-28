@@ -69,7 +69,7 @@
                             <h6 class="collapse-header">Lists : </h6>
                             <a class="collapse-item" href="viewUser.jsp">Total User</a>
                             <a class="collapse-item" href="newUser.jsp">New User</a>
-                            <a class="collapse-item" href="oldUser">Old Users</a>
+                            <a class="collapse-item" href="oldUser.jsp">Old Users</a>
 
                         </div>
                     </div>
@@ -86,12 +86,12 @@
                             <h6 class="collapse-header">Manage:</h6>
                             <a class="collapse-item" href="addUser.jsp">Add User</a>
                             <a class="collapse-item" href="viewUser.jsp">View Users</a>
-                            <a class="collapse-item" href="updateUser.jsp">Update User</a>
-                            <a class="collapse-item" href="deleteUser.jsp">Delete User</a>
+                            <a class="collapse-item" href="UpdateUser.jsp">Update User</a>
+                            <a class="collapse-item" href="DeleteUser.jsp">Delete User</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Admin Tasks:</h6>
-                            <a class="collapse-item" href="404.html">Make Admin</a>
-                            <a class="collapse-item" href="blank.html">Remove Admin</a>
+                            <a class="collapse-item" href="MakeAdmin.jsp">Make Admin</a>
+                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>
                         </div>
                     </div>
                 </li>
@@ -127,7 +127,7 @@
                         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="Post" action="Search">
                             <div class="input-group">
                                 <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="search">
-               
+
                                 <div class="input-group-append">
                                     <button  class="btn btn-primary" type="submit">
                                         <i class="fas fa-search fa-sm"></i>
@@ -167,27 +167,27 @@
                                     <!-- Counter - Alerts -->
                                     <span class="badge badge-danger badge-counter">
                                         <%
-                                                        if (session != null) {
-                                                            try {
-                                                                Class.forName("com.mysql.cj.jdbc.Driver");
-                                                                String username = "root";
-                                                                String password = "";
-                                                                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
-                                                                String toda = java.time.LocalDate.now().toString();
-                                                                String query = "select count(user_id) from userdb where user_created_date=? ";
-                                                                PreparedStatement ps = con.prepareStatement(query);
-                                                                ps.setString(1, toda);
-                                                                ResultSet rs = ps.executeQuery();
-                                                                rs.next();
-                                                                int c = rs.getInt(1);
+                                            if (session != null) {
+                                                try {
+                                                    Class.forName("com.mysql.cj.jdbc.Driver");
+                                                    String username = "root";
+                                                    String password = "";
+                                                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+                                                    String toda = java.time.LocalDate.now().toString();
+                                                    String query = "select count(user_id) from userdb where user_created_date=? ";
+                                                    PreparedStatement ps = con.prepareStatement(query);
+                                                    ps.setString(1, toda);
+                                                    ResultSet rs = ps.executeQuery();
+                                                    rs.next();
+                                                    int c = rs.getInt(1);
 
-                                                                out.print(c);
+                                                    out.print(c);
 
-                                                            } catch (Exception e) {
-                                                                out.println(e);
-                                                            }
-                                                        }
-                                                    %>+
+                                                } catch (Exception e) {
+                                                    out.println(e);
+                                                }
+                                            }
+                                        %>+
                                     </span>
                                 </a>
                                 <!-- Dropdown - Alerts -->
@@ -276,29 +276,29 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                         <%
-                                        if (session != null) {
-                                            if (session.getAttribute("username") != null) {
-                                                String name = (String) session.getAttribute("username");
-                                                out.print("Hello, " + name);
-                                            } else {
-                                                response.sendRedirect("index.html");
+                                            if (session != null) {
+                                                if (session.getAttribute("username") != null) {
+                                                    String name = (String) session.getAttribute("username");
+                                                    out.print("Hello, " + name);
+                                                } else {
+                                                    response.sendRedirect("index.html");
+                                                }
                                             }
-                                        }
                                         %>
-                                      </span>
+                                    </span>
                                     <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="UpdateProfile.jsp">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
+                                        Update Profile
+                                    </a>
+                                    <a class="dropdown-item" href="DeleteProfile.jsp">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Delete Profile
                                     </a>
                                     <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
-                                    </a>
-                                    <a class="dropdown-item" href="AdminHistory.jsp">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Activity Log
                                     </a>
@@ -502,106 +502,98 @@
 
 
                     <main>
-                        <div class="container-fluid">
-                            <h1 class="mt-4">Tables</h1>
+                        <form action="/User-Management-System/DeleteUser" method="POST">
+                            <div class="container-fluid">
+                                <h1 class="mt-4">Tables</h1>
 
-                            <div class="card mb-4">
-                                <div class="card-body" ><marquee style="color: #8ebf42 " behaviour="alternate" direction="right">List of Users</marquee> Here is the list of users</div>
-                            </div>
-                            <div class="card mb-4">
-                                <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>User ID</th>
-                                                    <th>First Name</th>
-                                                    <th>Last name</th>
-                                                    <th>Username</th>
-                                                    <th>Email</th>
-                                                    <th>Gender</th>
-                                                    <th>BirthDate</th>
-                                                    <th>Password</th>
-                                                    <th>Is Admin</th>
-                                                    <th>User CreatedDate</th>
-                                                    <th>Is Blocked</th>
-                                                    <th>Update</th>
-                                                    <th>Delete</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <%
-                                                if (session != null) {
-                                                    try {
-                                                        Class.forName("com.mysql.cj.jdbc.Driver");
-                                                        String username = "root";
-                                                        String password = "";
-                                                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+                                <div class="card mb-4">
+                                    <div class="card-body" ><marquee style="color: #8ebf42 " behaviour="alternate" direction="right">List of Users</marquee> Here is the list of users</div>
+                                </div>
+                                <div class="card mb-4">
+                                    <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>User ID</th>
+                                                        <th>First Name</th>
+                                                        <th>Last name</th>
+                                                        <th>Username</th>
+                                                        <th>Email</th>
+                                                        <th>Gender</th>
+                                                        <th>BirthDate</th>
+                                                        <th>Password</th>
+                                                        <th>Is Admin</th>
+                                                        <th>User CreatedDate</th>
+                                                        <th>Is Blocked</th>
 
-                                                        String query = "select * from userdb";
-                                                        PreparedStatement ps = con.prepareStatement(query);
-                                                        ResultSet rs = ps.executeQuery();
-                                                        while (rs.next()) {
-                                                            out.print("<tbody>");
-                                                            out.print("<tr><td>");
-                                                            out.println(rs.getInt(1));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print(rs.getString(2));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print(rs.getString(3));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print(rs.getString(4));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print(rs.getString(5));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print(rs.getString(6));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print(rs.getString(7));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print("Sorry !!");
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print(rs.getString(9));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print(rs.getString(10));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print(rs.getBoolean(11));
-                                                            out.print("</td>"); 
-                                                            
-                                                            out.print("<td>");
-                                                            out.print("<a href=\"#\"> Update </a>");
-                                                            out.print("</td>");
-                                                            
-                                                            out.print("<td>");
-                                                            out.print("<a href=\"#\"> Delete </a>");
-                                                            out.print("</td>");
-                                                            
-                                                            out.print("</tr>");
-                                                            out.print("</tbody>");
-                                                                
+                                                    </tr>
+                                                </thead>
+                                                <%
+                                                    if (session != null) {
+                                                        try {
+                                                            Class.forName("com.mysql.cj.jdbc.Driver");
+                                                            String username = "root";
+                                                            String password = "";
+                                                            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+
+                                                            String query = "select * from userdb";
+                                                            PreparedStatement ps = con.prepareStatement(query);
+                                                            ResultSet rs = ps.executeQuery();
+                                                            while (rs.next()) {
+                                                                out.print("<tbody>");
+                                                                out.print("<tr><td>");
+                                                                out.println(rs.getInt(1));
+                                                                out.print("<input name=\"user_id\" type=\"hidden\" value=" + rs.getString(1) + " required>");
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(2));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(3));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(4));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(5));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(6));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(7));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print("Sorry !!");
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(9));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(10));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getBoolean(11));
+                                                                out.print("</td>");
+                                                                out.print("</tr>");
+                                                                out.print("</tbody>");
+
+                                                            }
+
+                                                        } catch (Exception e) {
+                                                            out.println(e);
                                                         }
-
-                                                    } catch (Exception e) {
-                                                        out.println(e);
                                                     }
-                                                }
-                                            %>
-                                            
-                                        </table>
+                                                %>
+
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </main>
 
 

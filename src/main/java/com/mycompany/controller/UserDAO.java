@@ -193,4 +193,44 @@ public class UserDAO {
         }
         return result;
     }
+        public static User getUserProfile(String username) {
+            User u;
+        try {
+            String query = "select user_firstname,user_lastname,username,user_email,user_gender,user_birthdate from userdb where username=?";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1,username);
+            
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                u = new User(rs.getString("user_firstname"),rs.getString("user_lastname"),rs.getString("username"),rs.getString("user_email"),rs.getString("user_gender"),rs.getString("user_birthdate"));
+            return u;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        return null;
+        
+    }
+    
+    public static void updateUser(User u){
+        try {
+            String query = "update userdb set user_firstname=?,user_lastname=?,username=?,user_email=?,user_gender=?,user_birthdate=? where username=?";//Sql query for updatng user in database
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, u.getFirst_name());
+            ps.setString(2, u.getLast_name());
+            ps.setString(3, u.getUsername());
+            ps.setString(4, u.getEmail());
+            ps.setString(5, u.getGender());
+            ps.setString(6, u.getUser_birthdate());
+            ps.setString(7, u.getUsername());
+
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
