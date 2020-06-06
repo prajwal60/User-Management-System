@@ -1,0 +1,17 @@
+CREATE TABLE userdb (
+  user_id int(6) NOT NULL AUTO_INCREMENT,
+  user_firstname varchar(20) NOT NULL,
+  user_lastname varchar(20) NOT NULL,
+  username varchar(20) NOT NULL,
+  user_email varchar(40) NOT NULL,
+  user_gender varchar(6) NOT NULL,
+  user_birthdate varchar(30) NOT NULL,
+  user_password varchar(32) NOT NULL,
+  user_is_admin varchar(5) NOT NULL,
+  user_created_date varchar(30) NOT NULL,
+  user_blocked_status varchar(5) NOT NULL,
+  PRIMARY KEY (user_id),
+  UNIQUE KEY user_id_UNIQUE (user_id),
+  UNIQUE KEY username_UNIQUE (username)) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  
+  CREATE TABLE history ( history_id int(6) NOT NULL AUTO_INCREMENT, user_id int(6) NOT NULL, FOREIGN KEY(user_id) REFERENCES userdb(user_id) on delete cascade,time varchar(30) NOT NULL,action_performed varchar(50), PRIMARY KEY (history_id)) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1

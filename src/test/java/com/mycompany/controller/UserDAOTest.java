@@ -126,7 +126,7 @@ public class UserDAOTest {
         u.setUser_password1("12345678");
         u.setUser_passsword2("12345678");
         u.setUser_is_admin("true");
-        u.setUser_created_date("2020-04-29");
+        u.setUser_created_date(java.time.LocalDate.now().toString());
         u.setUser_blocked_status("false");
         
         UserDAO.addUser(u);
@@ -142,7 +142,7 @@ public class UserDAOTest {
         u.setUser_password1("12345678");
         u.setUser_passsword2("12345678");
         u.setUser_is_admin("false");
-        u.setUser_created_date("2020-04-29");
+        u.setUser_created_date(java.time.LocalDate.now().toString());
         u.setUser_blocked_status("false");
         
         UserDAO.addUser(u);
