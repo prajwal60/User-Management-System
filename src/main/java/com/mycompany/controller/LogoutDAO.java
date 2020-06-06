@@ -31,6 +31,7 @@ public class LogoutDAO {
         HttpSession session = request.getSession();
         session.removeAttribute("username");
         session.invalidate();
+        request.setAttribute("message","You Have Been Logged Out Please Re-Login");
         
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
