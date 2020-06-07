@@ -360,8 +360,7 @@
                                                             out.print("<tbody>");
                                                             out.print("<tr><td>");
                                                             out.println(rs.getInt(1));
-                                                            out.print("</td>");
-                                                            out.print("<input name=\"user_id\" type=\"hidden\" value="+rs.getString(1)+" required>");
+                                                            out.print("</td>");                                                            
                                                             out.print("<td>");
                                                             out.print(rs.getString(2));
                                                             out.print("</td>");
@@ -393,7 +392,7 @@
                                                             out.print(rs.getBoolean(11));
                                                             out.print("</td>");
                                                             out.print("<td>");
-                                                            out.print("<button type=\"submit\"> Delete</button> ");
+                                                            out.print("<button value="+rs.getString(1)+" name=\"user_id\" type=\"submit\"> Delete</button> ");
                                                             out.print("</td>");
                                                             out.print("</tr>");
                                                             out.print("</tbody>");
