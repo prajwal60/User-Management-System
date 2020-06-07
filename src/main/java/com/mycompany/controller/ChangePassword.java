@@ -62,11 +62,11 @@ public class ChangePassword extends HttpServlet {
                ChangePasswordDAO.changePassword(new_password, username);
                request.setAttribute("message","Your Password has changed Please Login Again");
                
-               System.out.println(old_password);
-               System.out.println(new_password);
-               System.out.println(confirm_password);
-               System.out.println(username);
-               System.out.println(Hashing.getHash(new_password));
+//               System.out.println(old_password);
+//               System.out.println(new_password);
+//               System.out.println(confirm_password);
+//               System.out.println(username);
+//               System.out.println(Hashing.getHash(new_password));
                
                History h = new History(UserDAO.getUserID(username),LocalDateTime.now().toString(),"Changed Password");
                HistoryDAO.addHistory(h);

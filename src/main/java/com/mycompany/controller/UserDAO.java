@@ -5,6 +5,7 @@
  */
 package com.mycompany.controller;
 
+import com.mycompany.model.History;
 import com.mycompany.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -254,6 +256,9 @@ public class UserDAO {
             ps.setString(7, u.getUsername());
 
             ps.executeUpdate();
+            int id = UserDAO.getUserID(u.getUsername());
+            History h = new History(id,LocalDateTime.now().toString(),"Updated Profile");
+            HistoryDAO.addHistory(h);
 
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,6 +7,7 @@ package com.mycompany.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,13 @@ public class Logout extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session=request.getSession();
-            LogoutDAO.logout(session.getAttribute("username").toString(), request, response);
+            String username = session.getAttribute("username").toString();
+            if(username.isEmpty()){
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                request.setAttribute("message", "You need to relogin");
+                rd.forward(request, response);
+            }
+            LogoutDAO.logout(username, request, response);
         }
     }
 
