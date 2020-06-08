@@ -33,14 +33,17 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session=request.getSession();
-//            String username = session.getAttribute("username").toString();
+            HttpSession session=request.getSession();           
             if(session.getAttribute("username")==null){
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 request.setAttribute("message", "You need to relogin");
                 rd.forward(request, response);
             }
-            LogoutDAO.logout(username, request, response);//calls logout function
+            else{
+                String username = session.getAttribute("username").toString();
+                LogoutDAO.logout(username, request, response);//calls logout function
+            }
+            
         }
     }
 
