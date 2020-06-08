@@ -43,7 +43,7 @@ public class UpdateUser extends HttpServlet {
             if (request.getParameter("req").equals("show")) {
                 HttpSession s = request.getSession();
                 if (s.getAttribute("username") == null) {
-                    request.setAttribute("message", "You need to login first");
+                    request.setAttribute("message", "You need to login first");//prevent back button
                     rd.forward(request, response);
                 } else {
                     RequestDispatcher rd1 = request.getRequestDispatcher("UpdateUserProfile.jsp");
@@ -51,7 +51,7 @@ public class UpdateUser extends HttpServlet {
 
                     String username = (String) session.getAttribute("username");
 
-                    User u = UserDAO.getUserProfile(username);
+                    User u = UserDAO.getUserProfile(username);//calls get user profile function
 
                     request.setAttribute("userdata", u);
                     rd1.forward(request, response);

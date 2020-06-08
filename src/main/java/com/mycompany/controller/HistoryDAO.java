@@ -20,7 +20,7 @@ public class HistoryDAO {
 
     static Connection conn = ConnectionClass.getConnection();
 
-    public static void addHistory(History h) throws SQLException {
+    public static void addHistory(History h) throws SQLException {//function for adding entry to history
         int user_id = h.getUser_id();
         String time = h.getTime();
         String action = h.getAction_performed();
@@ -35,7 +35,7 @@ public class HistoryDAO {
         ps.executeUpdate();
 
     }
-
+        //return arraylist of data obtained from history table for user
     public static ArrayList<History> getUserHistory(String username) throws SQLException {
         int id = UserDAO.getUserID(username);
 
@@ -55,7 +55,8 @@ public class HistoryDAO {
         }
         return list;
     }
-
+    
+        //return history data for admin in the form of arraylist
     public static ArrayList<History> getAdminHistory() throws SQLException {
 
         String query = "select * from history";//get all values from userid

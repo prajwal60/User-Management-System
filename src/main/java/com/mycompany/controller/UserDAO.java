@@ -148,7 +148,7 @@ public class UserDAO {
         }
     }
     
-    public static int getUsernameByID(String username) {
+    public static int getUsernameByID(String username) {//returns the user id when passed username
         try {
             String query = "select user_id from userdb where username=?";
 
@@ -168,7 +168,7 @@ public class UserDAO {
         }
     }
 
-    public static boolean getUser_is_admin(String username) {
+    public static boolean getUser_is_admin(String username) {//returns whether user is admin or not
         boolean result = false;
         try {
             String query = "select user_is_admin from userdb where username=?";
@@ -193,7 +193,7 @@ public class UserDAO {
         return result;
     }
 
-    public static boolean getUser_blocked_status(String username) {
+    public static boolean getUser_blocked_status(String username) {//checcks it the user is blocked
         boolean result = false;
         try {
             String query = "select user_blocked_status from userdb where username=?";
@@ -220,7 +220,7 @@ public class UserDAO {
 
 
 
-        public static User getUserProfile(String username) {
+        public static User getUserProfile(String username) {//return user profile from given username
 
             User u;
         try {
@@ -245,7 +245,7 @@ public class UserDAO {
         
     }
     
-    public static void updateUser(User u){
+    public static void updateUser(User u){//update table with new values
         try {
             String query = "update userdb set user_firstname=?,user_lastname=?,"
                     + "username=?,user_email=?,user_gender=?,user_birthdate=? where username=?";//Sql query for updatng user in database
