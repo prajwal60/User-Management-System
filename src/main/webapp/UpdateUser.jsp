@@ -46,7 +46,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homepage.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -92,7 +92,9 @@
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Admin Tasks:</h6>
                             <a class="collapse-item" href="MakeAdmin.jsp">Make Admin</a>
-                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>
+                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>                            
+                            <a class="collapse-item" href="blockUser.jsp">Block User</a>
+                            <a class="collapse-item" href="unblockUser.jsp">Unblock User</a>
                         </div>
                     </div>
                 </li>
@@ -300,15 +302,16 @@
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Delete Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="AdminHistory.jsp">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Activity Log
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" action="Logout" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
+
                                 </div>
                             </li>
 
@@ -320,16 +323,14 @@
                         <form action="UpdateUserAdmin" method="POST">
                         
                         <div class="container-fluid">
-                            <h1 class="mt-4">Tables</h1>
+                            <h1 class="mt-4">Admin History</h1>
 
+                           
                             <div class="card mb-4">
-                                <div class="card-body" ><marquee style="color: #8ebf42 " behaviour="alternate" direction="right">List of Users</marquee> Here is the list of users</div>
-                            </div>
-                            <div class="card mb-4">
-                                <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
+                               
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-bordered"  width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>User ID</th>
@@ -393,13 +394,13 @@
                                                             out.print(rs.getBoolean(11));
                                                             out.print("</td>");
                                                             out.print("<td>");
-//                                                            out.print("<input name=\"user_id\"  type=\"hidden\" value="+rs.getString(1)+" required>");
+//                                                          out.print("<input name=\"user_id\"  type=\"hidden\" value="+rs.getString(1)+" required>");
                                                             out.print("<button value="+rs.getString(1)+" name=\"user_id\" type=\"submit\"> Update</button> ");
                                                             out.print("</td>");
                                                             out.print("</tr>");
                                                             out.print("</tbody>");
-                                                             RequestDispatcher rd = request.getRequestDispatcher("UpdatePage.jsp");
-            rd.include(request, response);
+                                                            RequestDispatcher rd = request.getRequestDispatcher("UpdatePage.jsp");
+                                                            rd.include(request, response);
 
                                                         }
 

@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="com.mycompany.controller.UserDAO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -46,7 +47,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homepage.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -68,9 +69,9 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Lists : </h6>
-                            <a class="collapse-item" href="buttons.html">Total User</a>
-                            <a class="collapse-item" href="cards.html">New User</a>
-                            <a class="collapse-item" href="buttons.html">Old Users</a>
+                            <a class="collapse-item" href="viewUser.jsp">Total User</a>
+                            <a class="collapse-item" href="newUser.jsp">New User</a>
+                            <a class="collapse-item" href="oldUser.jsp">Old Users</a>
 
                         </div>
                     </div>
@@ -87,12 +88,14 @@
                             <h6 class="collapse-header">Manage:</h6>
                             <a class="collapse-item" href="addUser.jsp">Add User</a>
                             <a class="collapse-item" href="viewUser.jsp">View Users</a>
-                            <a class="collapse-item" href="updateUser.jsp">Update User</a>
-                            <a class="collapse-item" href="deleteUser.jsp">Delete User</a>
+                            <a class="collapse-item" href="UpdateUser.jsp">Update User</a>
+                            <a class="collapse-item" href="DeleteUser.jsp">Delete User</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Admin Tasks:</h6>
-                            <a class="collapse-item" href="404.html">Make Admin</a>
-                            <a class="collapse-item" href="blank.html">Remove Admin</a>
+                            <a class="collapse-item" href="MakeAdmin.jsp">Make Admin</a>
+                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>                            
+                            <a class="collapse-item" href="blockUser.jsp">Block User</a>
+                            <a class="collapse-item" href="unblockUser.jsp">Unblock User</a>
                         </div>
                     </div>
                 </li>
@@ -289,24 +292,25 @@
                                     <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                                 </a>
                                 <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
+                               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="UpdateProfile.jsp">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
+                                        Update Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="DeleteProfile.jsp">
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
+                                        Delete Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="AdminHistory.jsp">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Activity Log
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" action="Logout" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
+
                                 </div>
                             </li>
 
@@ -315,41 +319,70 @@
                     </nav>
                     <!-- End of Topbar -->
                     <div class="main">
-                         <%
-    if(session.getAttribute("username")==null){
-        request.setAttribute("message", "You need to be logged in !!");
-        response.sendRedirect("index.jsp");
-    }
-    %>
 
-<div class="limiter">
-            <div class="container-table100">
-                <div class="wrap-table100">
-                    <div class="table100">
-                        <table>
-                            <thead>
-                                <tr class="table100-head">
-                                    <th class="column1">History ID</th>
-                                    <th class="column2">User ID</th>
-                                    <th class="column3">Time</th>
-                                    <th class="column6">Action Performed</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${adminHistory}" var = "history">
-                                    <tr>
-                                        <td class="column1">${history.history_id}</td>
-                                        <td class="column2">${history.user_id}</td>
-                                        <td class="column3">${history.time}</td>
-                                        <td class="column6">${history.action_performed}</td>
-                                    </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    <main>
+                        <form action="/User-Management-System/DeleteUser" method="POST">
+                            <div class="container-fluid">
+                                <h1 class="mt-4">My Activities</h1>
+                                <div class="card mb-4">
+                                    
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered"  width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>History ID</th>
+                                                        <th>Username</th>
+                                                        <th>Time</th>
+                                                        <th>Action Performed</th>                                            
+
+                                                    </tr>
+                                                </thead>
+                                                <%
+                                                    if (session != null) {
+                                                        try {
+                                                            String un = (String) session.getAttribute("username");
+                                                            Class.forName("com.mysql.cj.jdbc.Driver");
+                                                            String username = "root";
+                                                            String password = "";
+                                                            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+                                                            
+                                                            int id = UserDAO.getUserID((String)session.getAttribute("username"));
+                                                            String sql = "select * from history where user_id = ?";
+                                                            PreparedStatement psq = con.prepareStatement(sql);
+                                                            psq.setInt(1, id);
+                                                            ResultSet rs = psq.executeQuery();
+                                                            while (rs.next()) {
+                                                                out.print("<tbody>");
+                                                                out.print("<tr><td>");
+                                                                out.println(rs.getInt(1));                                                                
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(2));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(3));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print(rs.getString(4));
+                                                                out.print("</td>");                                                                
+                                                                out.print("</tr>");
+                                                                out.print("</tbody>");
+                                                            }
+
+                                                        } catch (Exception e) {
+                                                            out.println(e);
+                                                        }
+                                                    }
+                                                %>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </main>
 
 
                         <!-- Sing in  Form -->

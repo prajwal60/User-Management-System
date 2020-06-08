@@ -5,11 +5,13 @@
  */
 package com.mycompany.controller;
 
+import com.mycompany.model.History;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -17,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,6 +41,7 @@ public class DeleteUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
             Connection conn =ConnectionClass.getConnection();
          String user_id = request.getParameter("user_id");         
          System.out.print(user_id);
@@ -46,6 +50,7 @@ public class DeleteUser extends HttpServlet {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1,user_id);
             ps.executeUpdate();
+
             RequestDispatcher rd = request.getRequestDispatcher("DeleteUser.jsp");
            rd.include(request, response);
         }

@@ -50,7 +50,7 @@ public class AdminMaker extends HttpServlet {
             statement.setString(1, t);
             statement.setString(2, uid);
             statement.executeUpdate();
-            RequestDispatcher rd = request.getRequestDispatcher("AdminHandler.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("MakeAdmin.jsp");
             rd.include(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(AdminMaker.class.getName()).log(Level.SEVERE, null, ex);

@@ -46,7 +46,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homepage.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -92,7 +92,9 @@
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Admin Tasks:</h6>
                             <a class="collapse-item" href="MakeAdmin.jsp">Make Admin</a>
-                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>
+                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>                            
+                            <a class="collapse-item" href="blockUser.jsp">Block User</a>
+                            <a class="collapse-item" href="unblockUser.jsp">Unblock User</a>
                         </div>
                     </div>
                 </li>
@@ -128,7 +130,7 @@
                         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="Post" action="Search">
                             <div class="input-group">
                                 <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="search">
-               
+
                                 <div class="input-group-append">
                                     <button  class="btn btn-primary" type="submit">
                                         <i class="fas fa-search fa-sm"></i>
@@ -161,34 +163,34 @@
                                 </div>
                             </li>
 
-                             <!-- Nav Item - Alerts -->
+                            <!-- Nav Item - Alerts -->
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
                                     <!-- Counter - Alerts -->
                                     <span class="badge badge-danger badge-counter">
                                         <%
-                                                        if (session != null) {
-                                                            try {
-                                                                Class.forName("com.mysql.cj.jdbc.Driver");
-                                                                String username = "root";
-                                                                String password = "";
-                                                                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
-                                                                String toda = java.time.LocalDate.now().toString();
-                                                                String query = "select count(user_id) from userdb where user_created_date=? ";
-                                                                PreparedStatement ps = con.prepareStatement(query);
-                                                                ps.setString(1, toda);
-                                                                ResultSet rs = ps.executeQuery();
-                                                                rs.next();
-                                                                int c = rs.getInt(1);
+                                            if (session != null) {
+                                                try {
+                                                    Class.forName("com.mysql.cj.jdbc.Driver");
+                                                    String username = "root";
+                                                    String password = "";
+                                                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+                                                    String toda = java.time.LocalDate.now().toString();
+                                                    String query = "select count(user_id) from userdb where user_created_date=? ";
+                                                    PreparedStatement ps = con.prepareStatement(query);
+                                                    ps.setString(1, toda);
+                                                    ResultSet rs = ps.executeQuery();
+                                                    rs.next();
+                                                    int c = rs.getInt(1);
 
-                                                                out.print(c);
+                                                    out.print(c);
 
-                                                            } catch (Exception e) {
-                                                                out.println(e);
-                                                            }
-                                                        }
-                                                    %>+
+                                                } catch (Exception e) {
+                                                    out.println(e);
+                                                }
+                                            }
+                                        %>+
                                     </span>
                                 </a>
                                 <!-- Dropdown - Alerts -->
@@ -300,15 +302,16 @@
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Delete Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="AdminHistory.jsp">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Activity Log
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" action="Logout" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
+
                                 </div>
                             </li>
 
@@ -316,112 +319,112 @@
 
                     </nav>
                     <!-- End of Topbar -->
-                   <main>
+                    <main>
                         <div class="container-fluid">
                             <h1 class="mt-4">Make Admin</h1>
                             <form  method="POST" action="AdminMaker">
 
-                            <div class="card mb-4">
+                                <div class="card mb-4">
 
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered"  >
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered"  >
 
-                                            <%
-                                                if (session != null) {
-                                                    try {
-                                                        Class.forName("com.mysql.cj.jdbc.Driver");
-                                                        String username = "root";
-                                                        String password = "";
-                                                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
-                                                        String id =  request.getParameter("user_id");
-                                                        String query = "select * from userdb where user_id=?";
-                                                        PreparedStatement ps = con.prepareStatement(query);
-                                                        ps.setString(1, id);
-                                                        ResultSet rs = ps.executeQuery();
-                                                        while (rs.next()) {
-                                                            out.print("<thead >");
-                                                            out.print("<tr>");
-                                                            out.print("<th>User ID</th>");
-                                                            out.print("<td>");
-                                                            out.println(rs.getString(1));
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                           
-                                                            out.print("<input name=\"user_id\" type=\"hidden\" value="+rs.getString(1)+" required>");
-                                                            out.print("</td>");
-                                                            out.print("</tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<th>First Name</th>");
-                                                            out.print("<td>");
-                                                            out.println(rs.getString(2));
-                                                            out.print("</td>");
-                                                            
-                                                            out.print("</tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<th>Last Name</th>");
-                                                            out.print("<td>");
-                                                            out.println(rs.getString(3));
-                                                            out.print("</td>");
-                                                            
-                                                            out.print("</tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<th>Username</th>");
-                                                            out.print("<td>");
-                                                            out.println(rs.getString(4));
-                                                            out.print("</td>");
-                                                           
-                                                            out.print("</tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<th>Email</th>");
-                                                            out.print("<td>");
-                                                            out.println(rs.getString(5));
-                                                            out.print("</td>");
-                                                            
-                                                            out.print("</tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<th>Gender</th>");
-                                                            out.print("<td>");
-                                                            out.println(rs.getString(6));
-                                                            out.print("</td>");
-                                                           
-                                                            out.print("</tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<th>Birthdate</th>");
-                                                            out.print("<td>");
-                                                            out.println(rs.getString(7));
-                                                            out.print("</td>");
-                                                            
-                                                            out.print("</tr>");
-                                                            out.print("<tr>");
-                                                            out.print("<th>Click to Make Admin ==></th>");
-                                                            out.print("<td>");
-                                                            out.print("");
-                                                            out.print("</td>");
-                                                            out.print("<td>");
-                                                            out.print("<button > Make Admin</button> ");
-                                                            out.print("</td>");
-                                                            out.print("</tr>");
-                                                            out.print("</tbody>");
+                                                <%
+                                                    if (session != null) {
+                                                        try {
+                                                            Class.forName("com.mysql.cj.jdbc.Driver");
+                                                            String username = "root";
+                                                            String password = "";
+                                                            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+                                                            String id = request.getParameter("user_id");
+                                                            String query = "select * from userdb where user_id=?";
+                                                            PreparedStatement ps = con.prepareStatement(query);
+                                                            ps.setString(1, id);
+                                                            ResultSet rs = ps.executeQuery();
+                                                            while (rs.next()) {
+                                                                out.print("<thead >");
+                                                                out.print("<tr>");
+                                                                out.print("<th>User ID</th>");
+                                                                out.print("<td>");
+                                                                out.println(rs.getString(1));
+                                                                out.print("</td>");
+                                                                out.print("<td>");
 
+                                                                out.print("<input name=\"user_id\" type=\"hidden\" value=" + rs.getString(1) + " required>");
+                                                                out.print("</td>");
+                                                                out.print("</tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<th>First Name</th>");
+                                                                out.print("<td>");
+                                                                out.println(rs.getString(2));
+                                                                out.print("</td>");
+
+                                                                out.print("</tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<th>Last Name</th>");
+                                                                out.print("<td>");
+                                                                out.println(rs.getString(3));
+                                                                out.print("</td>");
+
+                                                                out.print("</tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<th>Username</th>");
+                                                                out.print("<td>");
+                                                                out.println(rs.getString(4));
+                                                                out.print("</td>");
+
+                                                                out.print("</tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<th>Email</th>");
+                                                                out.print("<td>");
+                                                                out.println(rs.getString(5));
+                                                                out.print("</td>");
+
+                                                                out.print("</tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<th>Gender</th>");
+                                                                out.print("<td>");
+                                                                out.println(rs.getString(6));
+                                                                out.print("</td>");
+
+                                                                out.print("</tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<th>Birthdate</th>");
+                                                                out.print("<td>");
+                                                                out.println(rs.getString(7));
+                                                                out.print("</td>");
+
+                                                                out.print("</tr>");
+                                                                out.print("<tr>");
+                                                                out.print("<th>Click to Make Admin ==></th>");
+                                                                out.print("<td>");
+                                                                out.print("");
+                                                                out.print("</td>");
+                                                                out.print("<td>");
+                                                                out.print("<button > Make Admin</button> ");
+                                                                out.print("</td>");
+                                                                out.print("</tr>");
+                                                                out.print("</tbody>");
+
+                                                            }
+
+                                                        } catch (Exception e) {
+                                                            out.println(e);
                                                         }
-
-                                                    } catch (Exception e) {
-                                                        out.println(e);
                                                     }
-                                                }
-                                            %>
-                        
-                                        </table>
+                                                %>
+
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                                            </form>
+                            </form>
                         </div>
                     </main>
                     <!-- /.container-fluid -->

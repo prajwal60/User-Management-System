@@ -61,7 +61,7 @@ public class Updated extends HttpServlet {
             statement.setString(6, user_birthdate);
             statement.setString(7, uid);
             statement.executeUpdate();
-            RequestDispatcher rd = request.getRequestDispatcher("UpdatePage.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("UpdateUser.jsp");
             rd.include(request, response);
         }
     }

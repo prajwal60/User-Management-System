@@ -47,7 +47,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homepage.jsp">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -69,9 +69,9 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Lists : </h6>
-                            <a class="collapse-item" href="totalUser.jsp">Total User</a>
-                            <a class="collapse-item" href="cards.html">New User</a>
-                            <a class="collapse-item" href="buttons.html">Old Users</a>
+                            <a class="collapse-item" href="viewUser.jsp">Total User</a>
+                            <a class="collapse-item" href="newUser.jsp">New User</a>
+                            <a class="collapse-item" href="oldUser.jsp">Old Users</a>
 
                         </div>
                     </div>
@@ -93,7 +93,9 @@
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Admin Tasks:</h6>
                             <a class="collapse-item" href="MakeAdmin.jsp">Make Admin</a>
-                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>
+                            <a class="collapse-item" href="AdminRemover.jsp">Remove Admin</a>                            
+                            <a class="collapse-item" href="blockUser.jsp">Block User</a>
+                            <a class="collapse-item" href="unblockUser.jsp">Unblock User</a>
                         </div>
                     </div>
                 </li>
@@ -299,15 +301,16 @@
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Delete Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="AdminHistory.jsp">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Activity Log
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" action="Logout" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
+
                                 </div>
                             </li>
 

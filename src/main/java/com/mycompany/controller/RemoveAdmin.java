@@ -50,7 +50,7 @@ public class RemoveAdmin extends HttpServlet {
             statement.setString(1, t);
             statement.setString(2, uid);
             statement.executeUpdate();
-            RequestDispatcher rd = request.getRequestDispatcher("RemoveAdmin.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("AdminRemover.jsp");
             rd.include(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(AdminMaker.class.getName()).log(Level.SEVERE, null, ex);
