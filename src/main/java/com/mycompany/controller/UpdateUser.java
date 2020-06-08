@@ -5,8 +5,6 @@
  */
 package com.mycompany.controller;
 
-
-
 import com.mycompany.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,12 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
-
-
 /**
  *
  * @author Your Name <Prajwal Ghimire>
-
+ *
  */
 public class UpdateUser extends HttpServlet {
 
@@ -46,7 +42,7 @@ public class UpdateUser extends HttpServlet {
 
             if (request.getParameter("req").equals("show")) {
                 HttpSession s = request.getSession();
-                if (s.getAttribute("username")==null) {
+                if (s.getAttribute("username") == null) {
                     request.setAttribute("message", "You need to login first");
                     rd.forward(request, response);
                 } else {
@@ -64,23 +60,15 @@ public class UpdateUser extends HttpServlet {
             } else if (request.getParameter("req").equals("update")) {
                 User u = new User(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("username"), request.getParameter("email"), request.getParameter("gender"), request.getParameter("birthdate"));
 
-              
                 UserDAO.updateUser(u);//Update user
-                
+
                 LogoutDAO.logout(request.getParameter("username"), request, response);
             }
         }
 
     }
 
-            /* TODO output your page here. You may use following sample code. */
-            
-
-         
-    
-    
-
-
+    /* TODO output your page here. You may use following sample code. */
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -95,15 +83,8 @@ public class UpdateUser extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 
-        
-        
-        
-        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-
-           
 
         } catch (Exception e) {
             out.print(e);
