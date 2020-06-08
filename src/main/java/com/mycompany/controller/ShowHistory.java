@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author pguragain3
  */
 public class ShowHistory extends HttpServlet {
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,21 +36,18 @@ public class ShowHistory extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
-        
+
         RequestDispatcher rd = request.getRequestDispatcher("AdminHistory.jsp");
         RequestDispatcher rd1 = request.getRequestDispatcher("UserHistory.jsp");
         try (PrintWriter out = response.getWriter()) {
-            
-            String username = request.getParameter("uname").toString();
+
+            String username = request.getParameter("uname");
             boolean is_admin = UserDAO.getUser_is_admin(username);
-            if(is_admin==true){
+            if (is_admin == true) {
                 ArrayList<History> list = HistoryDAO.getAdminHistory();
                 request.setAttribute("adminHistory", list);
                 rd.forward(request, response);
-            }
-            else{
+            } else {
                 ArrayList<History> list = HistoryDAO.getUserHistory(username);
                 request.setAttribute("userHistory", list);
                 rd1.forward(request, response);

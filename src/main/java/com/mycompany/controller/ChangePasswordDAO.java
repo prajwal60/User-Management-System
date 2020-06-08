@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  */
 public class ChangePasswordDAO {
     static Connection conn  = ConnectionClass.getConnection();
+    //fucntion to check whether the user entered password in correcy or not while changing password
     public static boolean password_missmatch_check(String old_password, String username){
         boolean status=true;
         try{
@@ -33,7 +34,7 @@ public class ChangePasswordDAO {
         if(rs.next()){
             String dbpass = rs.getString("user_password");
             
-            if(Hashing.getHash(old_password).equals(dbpass)){
+            if(Hashing.getHash(old_password).equals(dbpass)){//if passwords match
                 status=false;
             }
             else{
@@ -48,6 +49,7 @@ public class ChangePasswordDAO {
         return status;
     }
     
+    //function for changing user password
     public static void changePassword(String new_password,String username){
         try{
             String query = "update userdb set user_password=? where username=?";

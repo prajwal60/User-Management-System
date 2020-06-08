@@ -19,10 +19,7 @@ public class Controller {
     public boolean validate(String name, String pass) {
         boolean status = false;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String username = "root";
-            String password = "";
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_management?serverTimezone=UTC", username, password);
+            Connection con = ConnectionClass.getConnection();
 
             String query = "select * from userdb where username=? and user_password=?";
 

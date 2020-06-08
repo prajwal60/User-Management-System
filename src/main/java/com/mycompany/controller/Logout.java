@@ -40,7 +40,7 @@ public class Logout extends HttpServlet {
                 request.setAttribute("message", "You need to relogin");
                 rd.forward(request, response);
             }
-            LogoutDAO.logout(username, request, response);
+            LogoutDAO.logout(username, request, response);//calls logout function
         }
     }
 

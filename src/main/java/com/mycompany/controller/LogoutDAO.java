@@ -24,13 +24,13 @@ import javax.servlet.http.HttpSession;
 public class LogoutDAO {
     public static void logout(String username,HttpServletRequest request,HttpServletResponse response){
         try{
-        int id = UserDAO.getUserID(username);
+        int id = UserDAO.getUserID(username); //get user id from username
         History h = new History(id,LocalDateTime.now().toString(),"Logged Out");
         HistoryDAO.addHistory(h);
         
         HttpSession session = request.getSession();
         session.removeAttribute("username");
-        session.invalidate();
+        session.invalidate();//destroy the session
         request.setAttribute("message","You Have Been Logged Out Please Re-Login");
         
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
