@@ -48,6 +48,7 @@
                                 <input type="submit" name="Login" id="signin" class="form-submit" value="Log in"/>
                             </div>
                             <a href="forgetPassword.jsp" class="signup-image-link">Forgot Your Password?</a>
+                            <a href="TermsAndConditions.jsp" class="signup-image-link"><h3>Guest?? Read Terms and conditions</h3></a>
                         </form>
                     </div>
                 </div>

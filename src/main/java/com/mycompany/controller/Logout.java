@@ -34,8 +34,8 @@ public class Logout extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session=request.getSession();
-            String username = session.getAttribute("username").toString();
-            if(username.isEmpty()){
+//            String username = session.getAttribute("username").toString();
+            if(session.getAttribute("username")==null){
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 request.setAttribute("message", "You need to relogin");
                 rd.forward(request, response);

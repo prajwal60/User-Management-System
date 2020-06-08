@@ -74,7 +74,7 @@ public class login extends HttpServlet {
 
                     HistoryDAO.addHistory(h);//add to history
 
-                    RequestDispatcher rd = request.getRequestDispatcher("TermsAndConditions.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("UserDashboard.jsp");
                     rd.include(request, response);
                 }
 
