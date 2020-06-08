@@ -7,6 +7,7 @@ package com.mycompany.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,7 +27,10 @@ public class forgetPassword extends HttpServlet {
 
     static final int value = Gen.Verify();
     static final int pd = value;
-
+     
+  
+    
+    
     public static int pass() {
         int passed = pd;
         return passed;
@@ -54,8 +59,12 @@ public class forgetPassword extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
-        String to = request.getParameter("to");
+         String to = request.getParameter("to");
+         session.setAttribute("email",to);
+         
+        
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

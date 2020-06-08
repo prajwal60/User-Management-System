@@ -5,6 +5,7 @@
  */
 package com.mycompany.controller;
 
+import com.mycompany.model.History;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mycompany.model.User;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
@@ -31,7 +36,7 @@ public class AddingUser extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             User u = new User();
@@ -80,6 +85,10 @@ public class AddingUser extends HttpServlet {
                 rd.forward(request, response);
             } else {
                 UserDAO.addUser(u);//Add user
+                Integer userid = UserDAO.getUserID(uname);
+                
+                History h=new History(userid,  LocalDateTime.now().toString(), "User Removed From Admin");
+                                                             HistoryDAO.addHistory(h);
                 String subject = ("Your Username and Password");
                 String message = ("Your Username is : " + uname + ""
                         + "And Password is : " + passw + " "
@@ -107,7 +116,11 @@ public class AddingUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddingUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -121,7 +134,11 @@ public class AddingUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddingUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

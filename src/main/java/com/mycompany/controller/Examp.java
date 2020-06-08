@@ -7,18 +7,23 @@ package com.mycompany.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Your Name <Prajwal Ghimire>
  */
 public class Examp extends HttpServlet {
-int code = 111111;
+
+    
+  
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,11 +38,18 @@ int code = 111111;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        HttpSession session = request.getSession();
+        String to =(String) session.getAttribute("email");
         try (PrintWriter out = response.getWriter()) {
-            String email = request.getParameter("oldEmail");
-            String pass = request.getParameter("NewPassword");
-            fp.ForgotPasswordDAO(email,pass);
+            
+            
+            String pass = request.getParameter("newPassword");
+            System.out.print(to);
+            fp.ForgotPasswordDAO(to,pass);
+            session.invalidate();
+            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");            
+            rd.include(request,response);
+            
         }
         
     }
@@ -69,21 +81,7 @@ int code = 111111;
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String verify = request.getParameter("verifyCode");
-        int ver = Integer.parseUnsignedInt(verify);
-        PrintWriter out = response.getWriter();
         
-        if(ver ==code){
-        RequestDispatcher rd=request.getRequestDispatcher("forgetPasswordRetrive.jsp");
-        out.print("Enter the received code below");
-        rd.include(request,response);
-        
-        }
-        else{
-            RequestDispatcher rd=request.getRequestDispatcher("verifyCode.jsp");
-            out.print("Sorry Verify code do not match");
-            rd.include(request,response);
-            }
     }
 
     

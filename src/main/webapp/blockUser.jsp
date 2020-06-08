@@ -5,6 +5,9 @@
 --%>
 
 
+<%@page import="com.mycompany.controller.HistoryDAO"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="com.mycompany.model.History"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -396,6 +399,8 @@
                                                             out.print("</td>");
                                                             out.print("<td>");
                                                             out.print("<button value="+rs.getString(1)+" name=\"user_id\" type=\"submit\"> Block User</button> ");
+                                                            History h=new History(rs.getInt(1),  LocalDateTime.now().toString(), "User "+rs.getString(2)+"Blocked");
+                                                             HistoryDAO.addHistory(h);
                                                             out.print("</td>");
                                                             out.print("</tr>");
                                                             out.print("</tbody>");

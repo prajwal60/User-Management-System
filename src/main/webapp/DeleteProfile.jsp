@@ -5,6 +5,9 @@
 --%>
 
 
+<%@page import="com.mycompany.controller.HistoryDAO"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="com.mycompany.model.History"%>
 <%@page import="com.mycompany.model.User"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -403,6 +406,8 @@
                                                             out.print("<th>Click to update Profile ==></th>");
                                                             out.print("<td>");
                                                             out.print("<button type=\"submit\"> Delete My Account</button> ");
+                                                            History h=new History(rs.getInt(1),  LocalDateTime.now().toString(), "User Deleted");
+                                                             HistoryDAO.addHistory(h);
                                                             out.print("</td>");
                                                             
                                                             out.print("</tr>");

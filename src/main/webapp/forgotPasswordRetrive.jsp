@@ -44,23 +44,19 @@
                 <div class="p-5 text-center">
                 <div class="text-center">
                     <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Enter Verify Code</h1>
-                    <p class="mb-4">Please Enter your Old Password and New one </p>
+                    <h1 class="h4 text-gray-900 mb-2">Enter New Password</h1>
+                    
                     <form method="POST" action="Examp" class="user">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user " name="oldPassword" id="exampleInputEmail"  placeholder="Enter Old Password..." ><span class="btn-show-pass">
-							<i class="fa fa-eye"></i>
-						</span>
-                    </div> 
+                    
                                       <div class="form-group">
-                        <input type="password" class="form-control form-control-user" name="newPassword" id="exampleInputEmail"  placeholder="Enter New Password..."><span class="btn-show-pass">
-							<i class="fa fa-eye"></i>
+                        <input type="password" class="form-control form-control-user fa fa-eye" name="newPassword" id="exampleInputEmail"  placeholder="Enter New Password..."><span class="btn-show-pass">
+							
 						</span>
                     </div> 
                                        <div class="form-group">
-                        <input type="password" class="form-control form-control-user" name="confirmPassword" id="exampleInputEmail"  placeholder="Enter confirm Password..." >
+                        <input type="password" class="form-control form-control-user fa fa-eye" name="confirmPassword" id="exampleInputEmail"  placeholder="Enter confirm Password..." >
                         <span class="btn-show-pass">
-                            <i class="fa fa-eye"></i>
+                           
 						</span>
                     </div>  
                            <input type="submit" name="forgetPassword"  class="btn btn-primary btn-user btn-block" value="Reset Password"/>
