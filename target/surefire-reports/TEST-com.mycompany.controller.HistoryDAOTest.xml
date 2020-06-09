@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="com.mycompany.controller.HistoryDAOTest" time="0.323" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="com.mycompany.controller.HistoryDAOTest" time="0.385" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="13.0.3+3-Ubuntu-1ubuntu2"/>
@@ -54,7 +54,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="com.mycompany.controller.HistoryDAOTest" name="com.mycompany.controller.HistoryDAOTest.testAddHistory" time="0.318"/>
-  <testcase classname="com.mycompany.controller.HistoryDAOTest" name="com.mycompany.controller.HistoryDAOTest.testGetUserHistory" time="0.001"/>
-  <testcase classname="com.mycompany.controller.HistoryDAOTest" name="com.mycompany.controller.HistoryDAOTest.testGetAdminHistory" time="0.004"/>
+  <testcase classname="com.mycompany.controller.HistoryDAOTest" name="com.mycompany.controller.HistoryDAOTest.testAddHistory" time="0.382"/>
+  <testcase classname="com.mycompany.controller.HistoryDAOTest" name="com.mycompany.controller.HistoryDAOTest.testGetUserHistory" time="0.002"/>
+  <testcase classname="com.mycompany.controller.HistoryDAOTest" name="com.mycompany.controller.HistoryDAOTest.testGetAdminHistory" time="0.001"/>
 </testsuite>
