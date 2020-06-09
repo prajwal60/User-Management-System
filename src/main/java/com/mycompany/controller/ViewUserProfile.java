@@ -36,7 +36,7 @@ public class ViewUserProfile extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession s = request.getSession();
-                if (s.getAttribute("username")==null) {
+                if (s.getAttribute("username")==null) {//redirect to login page if session doesnt exist
                     RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
                     request.setAttribute("message", "You need to login first");
                     rd1.forward(request, response);

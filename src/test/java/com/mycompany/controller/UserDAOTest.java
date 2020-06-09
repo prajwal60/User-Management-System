@@ -45,7 +45,7 @@ public class UserDAOTest {
     @Test
     public void testUsername_exists() {
         System.out.println("username_exists");
-        String username = "pguragain3";
+        String username = "hauderam1000";
         u.setUsername(username);
         boolean expResult = false;
         boolean result = UserDAO.username_exists(u);
@@ -133,6 +133,8 @@ public class UserDAOTest {
         
         boolean result = UserDAO.username_exists(u);
         assertEquals(result,true);
+        
+        
         u.setFirst_name("Prabesh");
         u.setLast_name("Guragain");
         u.setUsername("user");
@@ -147,6 +149,19 @@ public class UserDAOTest {
         
         UserDAO.addUser(u);
         
+        u.setFirst_name("Dummy");
+        u.setLast_name("Account");
+        u.setUsername("dummy");
+        u.setEmail("dumdum@dummy");
+        u.setGender("male");
+        u.setUser_birthdate("2020-04-28");
+        u.setUser_password1("12345678");
+        u.setUser_passsword2("12345678");
+        u.setUser_is_admin("false");
+        u.setUser_created_date(java.time.LocalDate.now().toString());
+        u.setUser_blocked_status("false");
+        
+        UserDAO.addUser(u);
     }
     
 }

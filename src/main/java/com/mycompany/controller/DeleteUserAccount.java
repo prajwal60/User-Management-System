@@ -37,23 +37,18 @@ public class DeleteUserAccount extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            String username = (String)session.getAttribute("username");
+            String username = (String)session.getAttribute("username");//get the username from session
             
             String query2 = "DELETE FROM userdb WHERE user_id=?";
-            int userID = UserDAO.getUserID(username);
+            int userID = UserDAO.getUserID(username);//get user is from username
             
             PreparedStatement ps2 = ConnectionClass.getConnection().prepareStatement(query2);
             
 
             ps2.setInt(1,userID);
-            LogoutDAO.logout(username, request, response);
+            LogoutDAO.logout(username, request, response);//logout after deletion
 
             ps2.executeUpdate();
-            
-            
-
-            
-            
 
         } catch (SQLException ex) {
             Logger.getLogger(DeleteUserAccount.class.getName()).log(Level.SEVERE, null, ex);
