@@ -232,7 +232,7 @@ public class UserDAO {
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                u = new User(rs.getString("user_firstname"),rs.getString("user_lastname"),
+                u = new User(rs.getString("user_firstname"),rs.getString("user_lastname"),//write data to array and add to arraylist
                         rs.getString("username"),rs.getString("user_email"),rs.getString("user_gender"),
                         rs.getString("user_birthdate"));
             return u;
@@ -262,7 +262,7 @@ public class UserDAO {
             ps.executeUpdate();
             int id = UserDAO.getUserID(u.getUsername());
             History h = new History(id,LocalDateTime.now().toString(),"Updated Profile");
-            HistoryDAO.addHistory(h);
+            HistoryDAO.addHistory(h);//add the record to history
 
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);

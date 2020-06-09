@@ -50,7 +50,8 @@ public class HistoryDAO {
         ArrayList<History> list = new ArrayList<>();//new arraylist which will store all history
 
         while (rs.next()) {
-            History h = new History(rs.getInt("history_id"), id, rs.getString("time"), rs.getString("action_performed"));//iterate through every row of result set and add it to arraylist
+            //iterate through every row of result set and add it to arraylist
+            History h = new History(rs.getInt("history_id"), id, rs.getString("time"), rs.getString("action_performed"));
             list.add(h);
         }
         return list;
@@ -68,7 +69,8 @@ public class HistoryDAO {
         ArrayList<History> list = new ArrayList<>();//new arraylist which will store all history
 
         while (rs.next()) {
-            History h = new History(rs.getInt("history_id"), rs.getInt("user_id"), rs.getString("time"), rs.getString("action_performed"));//iterate through every row of result set and add it to arraylist
+            //iterate through every row of result set and add it to arraylist
+            History h = new History(rs.getInt("history_id"), rs.getInt("user_id"), rs.getString("time"), rs.getString("action_performed"));
             list.add(h);
         }
         return list;
