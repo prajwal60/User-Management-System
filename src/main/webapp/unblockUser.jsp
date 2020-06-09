@@ -400,7 +400,7 @@
                                                             out.print("<td>");
 //                                                          out.print("<input name=\"user_id\"  type=\"hidden\" value="+rs.getString(1)+" required>");
                                                             out.print("<button value="+rs.getString(1)+" name=\"user_id\" type=\"submit\">UnBlock User</button> ");
-                                                            History h=new History(rs.getInt(1),  LocalDateTime.now().toString(), "User "+rs.getString(2)+" Unblocked Blocked");
+                                                            History h=new History(rs.getInt(1),  LocalDateTime.now().toString(), "User "+rs.getString(2)+" Unblocked");
                                                              HistoryDAO.addHistory(h);
                                                             out.print("</td>");
                                                             out.print("</tr>");
